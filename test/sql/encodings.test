@@ -1,0 +1,23 @@
+# name: test/sql/encodings.test
+# description: test encodings extension
+# group: [encodings]
+
+# Before we load the extension, this will fail
+statement error
+SELECT encodings('Sam');
+----
+Catalog Error: Scalar Function with name encodings does not exist!
+
+# Require statement will ensure this test is run with this extension loaded
+require encodings
+
+# Confirm the extension works
+query I
+SELECT encodings('Sam');
+----
+Encodings Sam 🐥
+
+query I
+SELECT encodings_openssl_version('Michael') ILIKE 'Encodings Michael, my linked OpenSSL version is OpenSSL%';
+----
+true
