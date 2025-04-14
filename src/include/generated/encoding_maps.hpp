@@ -2,7 +2,7 @@
 //
 //                         DuckDB - Encodings
 //
-// encoding_maps.hpp
+// generated/encoding_maps.hpp
 //
 //
 //===----------------------------------------------------------------------===//
@@ -17,60 +17,6 @@
 namespace duckdb {
 namespace duckdb_encodings {
 
-struct encoding_map{
-  void DecodeMapToUTF8(const char *source_buffer, idx_t &source_buffer_current_position, const idx_t source_buffer_size,
-                       char *target_buffer, idx_t &target_buffer_current_position, const idx_t target_buffer_size,
-                       char *remaining_bytes_buffer, idx_t &remaining_bytes_size, map<vector<uint8_t>, vector<uint8_t>> map_to_utf8) {
 
-	for (; source_buffer_current_position < source_buffer_size; source_buffer_current_position += 2) {
-		if (target_buffer_current_position == target_buffer_size) {
-			// We are done
-			return;
-		}
-		const uint16_t ch =
-		    static_cast<uint16_t>(static_cast<unsigned char>(source_buffer[source_buffer_current_position]) |
-		                          (static_cast<unsigned char>(source_buffer[source_buffer_current_position + 1]) << 8));
-		if (ch >= 0xD800 && ch <= 0xDFFF) {
-			throw InvalidInputException("File is not utf-16 encoded");
-		}
-		if (ch <= 0x007F) {
-			// 1-byte UTF-8 for ASCII characters
-			target_buffer[target_buffer_current_position++] = static_cast<char>(ch & 0x7F);
-		} else if (ch <= 0x07FF) {
-			// 2-byte UTF-8
-			target_buffer[target_buffer_current_position++] = static_cast<char>(0xC0 | (ch >> 6));
-			if (target_buffer_current_position == target_buffer_size) {
-				// We are done, but we have to store one byte for the next chunk!
-				source_buffer_current_position += 2;
-				remaining_bytes_buffer[0] = static_cast<char>(0x80 | (ch & 0x3F));
-				remaining_bytes_size = 1;
-				return;
-			}
-			target_buffer[target_buffer_current_position++] = static_cast<char>(0x80 | (ch & 0x3F));
-		} else {
-			// 3-byte UTF-8
-			target_buffer[target_buffer_current_position++] = static_cast<char>(0xE0 | (ch >> 12));
-			if (target_buffer_current_position == target_buffer_size) {
-				// We are done, but we have to store two bytes for the next chunk!
-				source_buffer_current_position += 2;
-				remaining_bytes_buffer[0] = static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
-				remaining_bytes_buffer[1] = static_cast<char>(0x80 | (ch & 0x3F));
-				remaining_bytes_size = 2;
-				return;
-			}
-			target_buffer[target_buffer_current_position++] = static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
-			if (target_buffer_current_position == target_buffer_size) {
-				// We are done, but we have to store one byte for the next chunk!
-				source_buffer_current_position += 2;
-				remaining_bytes_buffer[0] = static_cast<char>(0x80 | (ch & 0x3F));
-				remaining_bytes_size = 1;
-				return;
-			}
-			target_buffer[target_buffer_current_position++] = static_cast<char>(0x80 | (ch & 0x3F));
-		}
-	}
-}
-  void RegisterASCIIEncoding();
-};
 }
 }

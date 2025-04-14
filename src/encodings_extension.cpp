@@ -11,6 +11,8 @@
 // OpenSSL linked through vcpkg
 #include <openssl/opensslv.h>
 
+#include "generated/generated_encoded_function.hpp"
+
 namespace duckdb {
 
 inline void EncodingsScalarFun(DataChunk &args, ExpressionState &state, Vector &result) {
