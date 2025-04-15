@@ -19,9 +19,10 @@ namespace duckdb {
 namespace duckdb_encodings {
 class RegistrationEncodedFunctions {
 public:
-	static void RegisterFunctions(const DBConfig &config) {
-		AsciiToUtf::Register(config);
-	}
+    static void RegisterFunctions(const DBConfig &config) {
+       AsciiToUtf::Register(config);
+    }
 };
 } // namespace duckdb_encodings
 } // namespace duckdb
+
