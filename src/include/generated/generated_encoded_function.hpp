@@ -25,22 +25,30 @@ class GeneratedEncodedFunction: public EncodingFunction {
 	//! A convertion map, that indicates byte replacements.
 	map<vector<uint8_t>, vector<uint8_t>> conversion_map;
 
-	static void Decode(const char *source_buffer, idx_t &source_buffer_current_position, const idx_t source_buffer_size,
+	static void Decode(CSVEncoderBuffer& encoded_buffer,
                        char *target_buffer, idx_t &target_buffer_current_position, const idx_t target_buffer_size,
                        char *remaining_bytes_buffer, idx_t &remaining_bytes_size, EncodingFunction* encoding_function) {
 		auto &generated_function = *static_cast<GeneratedEncodedFunction*>(encoding_function);
-		// TODO what if it is the last buffer
-		while (source_buffer_current_position < source_buffer_size){
+		auto encoded_buffer_ptr = encoded_buffer.Ptr() ;
+		while (encoded_buffer.cur_pos < encoded_buffer.actual_encoded_buffer_size){
 			// We need to use our map from the highest to lowest lookup bytes
-			for (int byte_group = static_cast<int>(generated_function.lookup_bytes); byte_group > 0; --byte_group) {
+			if (encoded_buffer.actual_encoded_buffer_size - encoded_buffer.cur_pos < generated_function.lookup_bytes && !encoded_buffer.last_buffer) {
+				// Not enough bytes to check.
+				return;
+			}
+			int byte_group = static_cast<int>(generated_function.lookup_bytes);
+			if (encoded_buffer.actual_encoded_buffer_size - encoded_buffer.cur_pos < generated_function.lookup_bytes) {
+				byte_group = static_cast<int>(encoded_buffer.actual_encoded_buffer_size - encoded_buffer.cur_pos);
+			}
+			for (; byte_group > 0; --byte_group) {
 				vector<uint8_t> bytes;
 				for (idx_t byte_pos = 0; byte_pos < byte_group; ++byte_pos){
-					bytes.push_back(source_buffer[source_buffer_current_position+byte_pos]);
+					bytes.push_back(encoded_buffer_ptr[encoded_buffer.cur_pos +byte_pos]);
 				}
 				// We found a match, do the conversion
 				if (generated_function.conversion_map.find(bytes) != generated_function.conversion_map.end()) {
 					// We walk the byte group size from our buffer source
-					source_buffer_current_position += byte_group;
+					encoded_buffer.cur_pos  += byte_group;
 					vector<uint8_t> converted_bytes = generated_function.conversion_map[bytes];
 					for (idx_t byte_pos = 0; byte_pos < converted_bytes.size(); ++byte_pos) {
 						if (target_buffer_current_position == target_buffer_size) {
