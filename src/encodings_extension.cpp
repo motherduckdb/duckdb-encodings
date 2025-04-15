@@ -11,39 +11,14 @@
 // OpenSSL linked through vcpkg
 #include <openssl/opensslv.h>
 
-#include "generated/generated_encoded_function.hpp"
+#include "generated_encoded_function.hpp"
+#include "generated/registration.hpp"
 
 namespace duckdb {
 
-inline void EncodingsScalarFun(DataChunk &args, ExpressionState &state, Vector &result) {
-    auto &name_vector = args.data[0];
-    UnaryExecutor::Execute<string_t, string_t>(
-	    name_vector, result, args.size(),
-	    [&](string_t name) {
-			return StringVector::AddString(result, "Encodings "+name.GetString()+" 🐥");
-        });
-}
-
-inline void EncodingsOpenSSLVersionScalarFun(DataChunk &args, ExpressionState &state, Vector &result) {
-    auto &name_vector = args.data[0];
-    UnaryExecutor::Execute<string_t, string_t>(
-	    name_vector, result, args.size(),
-	    [&](string_t name) {
-			return StringVector::AddString(result, "Encodings " + name.GetString() +
-                                                     ", my linked OpenSSL version is " +
-                                                     OPENSSL_VERSION_TEXT );
-        });
-}
-
 static void LoadInternal(DatabaseInstance &instance) {
-    // Register a scalar function
-    auto encodings_scalar_function = ScalarFunction("encodings", {LogicalType::VARCHAR}, LogicalType::VARCHAR, EncodingsScalarFun);
-    ExtensionUtil::RegisterFunction(instance, encodings_scalar_function);
-
-    // Register another scalar function
-    auto encodings_openssl_version_scalar_function = ScalarFunction("encodings_openssl_version", {LogicalType::VARCHAR},
-                                                LogicalType::VARCHAR, EncodingsOpenSSLVersionScalarFun);
-    ExtensionUtil::RegisterFunction(instance, encodings_openssl_version_scalar_function);
+	// Register a scalar function
+	duckdb_encodings::RegistrationEncodedFunctions::RegisterFunctions(instance.config);
 }
 
 void EncodingsExtension::Load(DuckDB &db) {
@@ -66,8 +41,8 @@ std::string EncodingsExtension::Version() const {
 extern "C" {
 
 DUCKDB_EXTENSION_API void encodings_init(duckdb::DatabaseInstance &db) {
-    duckdb::DuckDB db_wrapper(db);
-    db_wrapper.LoadExtension<duckdb::EncodingsExtension>();
+	duckdb::DuckDB db_wrapper(db);
+	db_wrapper.LoadExtension<duckdb::EncodingsExtension>();
 }
 
 DUCKDB_EXTENSION_API const char *encodings_version() {
