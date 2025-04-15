@@ -46,8 +46,9 @@ public:
 
 	static void Register(const DBConfig &config) {
 		const AsciiToUtf ascii_to_utf;
-		const GeneratedEncodedFunction function(ascii_to_utf.name, ascii_to_utf.max_bytes_per_byte,
-		                                        ascii_to_utf.lookup_bytes, ascii_to_utf.ascii_to_utf8);
+		const EncodingFunction function(ascii_to_utf.name, GeneratedEncodedFunction::Decode,
+		                                ascii_to_utf.max_bytes_per_byte, ascii_to_utf.lookup_bytes,
+		                                ascii_to_utf.ascii_to_utf8);
 		config.RegisterEncodeFunction(function);
 	}
 };

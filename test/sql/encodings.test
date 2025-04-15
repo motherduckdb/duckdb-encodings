@@ -7,9 +7,9 @@
 require encodings
 
 statement ok
-create table T as FROM read_csv('data/test_ascii.csv', encoding = 'ascii')
+create table T as FROM read_csv('data/test_ascii.csv', encoding = 'ascii', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
 
 query I
 SELECT COUNT(*) FROM T
 ----
-10
+130
