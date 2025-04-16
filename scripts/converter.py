@@ -2,9 +2,9 @@ import sys
 import os
 import re
 
-python_icu_encoding_map = [('ascii', '646', None, 'solaris-646-2.7.ucm'), ('big5', 'big5', None, 'aix-big5-4.3.6.ucm'), ('cp037', 'IBM037', None, 'glibc-IBM037-2.1.2.ucm'), ('cp273', 'IBM273', None, 'glibc-IBM273-2.1.2.ucm'), ('cp424', 'IBM424', None, 'glibc-IBM424-2.1.2.ucm'), ('cp437', 'IBM437', None, 'glibc-IBM437-2.1.2.ucm'), ('cp500', 'IBM500', None, 'glibc-IBM500-2.1.2.ucm'), ('cp850', 'IBM850', None, 'glibc-IBM850-2.1.2.ucm'), ('cp852', 'IBM852', None, 'glibc-IBM852-2.1.2.ucm'), ('cp855', 'IBM855', None, 'glibc-IBM855-2.1.2.ucm'), ('cp857', 'IBM857', None, 'glibc-IBM857-2.1.2.ucm'), ('cp860', 'IBM860', None, 'glibc-IBM860-2.1.2.ucm'), ('cp861', 'IBM861', None, 'glibc-IBM861-2.1.2.ucm'), ('cp862', 'IBM862', None, 'glibc-IBM862-2.1.2.ucm'), ('cp863', 'IBM863', None, 'glibc-IBM863-2.1.2.ucm'), ('cp864', 'IBM864', None, 'glibc-IBM864-2.1.2.ucm'), ('cp865', 'IBM865', None, 'glibc-IBM865-2.1.2.ucm'), ('cp866', 'IBM866', None, 'glibc-IBM866-2.1.2.ucm'), ('cp869', 'IBM869', None, 'glibc-IBM869-2.1.2.ucm'), ('cp949', 'UHC', None, 'glibc-UHC-2.1.2.ucm'), ('cp1026', 'IBM1026', None, 'glibc-IBM1026-2.1.2.ucm'), ('euc_jp', 'eucJP', None, 'solaris-eucJP-2.7.ucm'), ('gb18030', 'gb18030', None, 'gb-18030-2005.ucm'), ('mac_roman', 'MACINTOSH', None, 'glibc-MACINTOSH-2.1.2.ucm'), ('shift_jis', 'SJIS', None, 'glibc-SJIS-2.1.2.ucm')]
+# python_icu_encoding_map = [('ascii', '646', None, 'solaris-646-2.7.ucm'), ('big5', 'big5', None, 'aix-big5-4.3.6.ucm'), ('cp037', 'IBM037', None, 'glibc-IBM037-2.1.2.ucm'), ('cp273', 'IBM273', None, 'glibc-IBM273-2.1.2.ucm'), ('cp424', 'IBM424', None, 'glibc-IBM424-2.1.2.ucm'), ('cp437', 'IBM437', None, 'glibc-IBM437-2.1.2.ucm'), ('cp500', 'IBM500', None, 'glibc-IBM500-2.1.2.ucm'), ('cp850', 'IBM850', None, 'glibc-IBM850-2.1.2.ucm'), ('cp852', 'IBM852', None, 'glibc-IBM852-2.1.2.ucm'), ('cp855', 'IBM855', None, 'glibc-IBM855-2.1.2.ucm'), ('cp857', 'IBM857', None, 'glibc-IBM857-2.1.2.ucm'), ('cp860', 'IBM860', None, 'glibc-IBM860-2.1.2.ucm'), ('cp861', 'IBM861', None, 'glibc-IBM861-2.1.2.ucm'), ('cp862', 'IBM862', None, 'glibc-IBM862-2.1.2.ucm'), ('cp863', 'IBM863', None, 'glibc-IBM863-2.1.2.ucm'), ('cp864', 'IBM864', None, 'glibc-IBM864-2.1.2.ucm'), ('cp865', 'IBM865', None, 'glibc-IBM865-2.1.2.ucm'), ('cp866', 'IBM866', None, 'glibc-IBM866-2.1.2.ucm'), ('cp869', 'IBM869', None, 'glibc-IBM869-2.1.2.ucm'), ('cp949', 'UHC', None, 'glibc-UHC-2.1.2.ucm'), ('cp1026', 'IBM1026', None, 'glibc-IBM1026-2.1.2.ucm'), ('euc_jp', 'eucJP', None, 'solaris-eucJP-2.7.ucm'), ('gb18030', 'gb18030', None, 'gb-18030-2005.ucm'), ('mac_roman', 'MACINTOSH', None, 'glibc-MACINTOSH-2.1.2.ucm'), ('shift_jis', 'SJIS', None, 'glibc-SJIS-2.1.2.ucm')]
 
-# python_icu_encoding_map = [('ascii', '646', None, 'solaris-646-2.7.ucm')]
+python_icu_encoding_map = [('big5', 'big5', None, 'aix-big5-4.3.6.ucm')]
 
 
 footer_encoding_generted = '''} // namespace duckdb_encodings
@@ -89,16 +89,26 @@ def parse_ucm_to_utf8_map(ucm_path):
 
 def generate_cpp_map(encoding_name, codepage_to_utf8, filepath):
     lines = [f'// Generated from: {filepath}',
-        f'const map<vector<uint8_t>, vector<uint8_t>> {encoding_name}_to_utf8 ='+' {'
+        f'static constexpr map_entry {encoding_name}_to_utf8[]  ='+' {'
     ]
 
+
+#     { 3, (const char[]){ 'a', 'b', 'c' },4, (const char[]){ 1, 2, 3, 4 }
+#     },
+#     { 2, (const char[]){ 'x', 'y' }, 3, (const char[]){ 9, 8, 7 }
+#     }
+# };
+    max_cp_len = 0
+    max_utf8_len = 0
     for cp_bytes, utf8_bytes in sorted(codepage_to_utf8.items()):
-        cp_str = ', '.join(f'0x{b:02X}' for b in cp_bytes)
-        utf8_str = ', '.join(f'0x{b:02X}' for b in utf8_bytes)
-        lines.append(f'    {{ {{ {cp_str} }}, {{ {utf8_str} }} }},')
+        cp_str = ''.join(f'\\x{b:02X}' for b in cp_bytes)
+        utf8_str = ''.join(f'\\x{b:02X}' for b in utf8_bytes)
+        lines.append(f'    {{ {len(cp_bytes)}, "{cp_str}", {len(utf8_bytes)}, "{utf8_str}" }},')
+        max_cp_len = max(max_cp_len, len(cp_bytes))
+        max_utf8_len = max(max_utf8_len, len(utf8_bytes))
 
     lines.append('};')
-    return '\n'.join(lines)
+    return '\n'.join(lines), max_cp_len, max_utf8_len
 
 
 def generate_decoded_chars(python_icu_encoding_map, output_dir="data"):
@@ -165,25 +175,17 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 
 
         '''
-            class_top = f'''class {encoding[0].capitalize()}ToUtf {{
-        public:
-            {encoding[0].capitalize()}ToUtf() {{}};
-            const idx_t lookup_bytes = 1;
-            const idx_t max_bytes_per_byte = 1;
-            const string name = "{encoding[0]}";
-            '''
+            
             
             class_bottom = f'''
               static void Register(const DBConfig &config) {{
                 const {encoding[0].capitalize()}ToUtf generated_function;
                 const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
                                                 generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-                                                generated_function.{encoding[0]}_to_utf8);
+                                                reinterpret_cast<uintptr_t>(&{encoding[0]}_to_utf8), sizeof({encoding[0]}_to_utf8) / sizeof({encoding[0]}_to_utf8[0]));
                 config.RegisterEncodeFunction(function);
             }}
-        }};
-        '''
-
+        }};'''
             encoding_file_path = os.path.join('third_party','icu_encodings',encoding[3])
             bytemap = parse_ucm_to_utf8_map(encoding_file_path)
             registration_file.write(f'       {encoding[0].capitalize()}ToUtf::Register(config);\n')
@@ -191,8 +193,15 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
             encoding_map_file_path = os.path.join(generated_path,file_name)
             with open(encoding_map_file_path, "w", encoding="utf-8") as out_file:
                 # These are the matched encoding
-                cpp_output = generate_cpp_map(encoding[0], bytemap, encoding[3])
+                cpp_output, max_lookup, max_output = generate_cpp_map(encoding[0], bytemap, encoding[3])
                 out_file.write(header_encoding_generated)
+                class_top = f'''class {encoding[0].capitalize()}ToUtf {{
+        public:
+            {encoding[0].capitalize()}ToUtf() {{}};
+            const idx_t lookup_bytes = {max_lookup};
+            const idx_t max_bytes_per_byte = {max_output};
+            const string name = "{encoding[0]}";
+            '''
                 out_file.write(class_top)
                 out_file.write(cpp_output)
                 out_file.write(class_bottom)
