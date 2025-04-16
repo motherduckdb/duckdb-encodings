@@ -72,7 +72,8 @@ struct MapEntryComparator {
 
 const map_entry *GeneratedEncodedFunction::FindEntry(const map_entry *map, size_t map_size, const char *search_key,
                                                      size_t search_len) {
-	auto it = std::lower_bound(map, map + map_size, std::make_pair(search_key, search_len), MapEntryComparator {});
+	const auto it =
+	    std::lower_bound(map, map + map_size, std::make_pair(search_key, search_len), MapEntryComparator {});
 	if (it != map + map_size && it->key_len == search_len && std::memcmp(it->key, search_key, search_len) == 0) {
 		return it;
 	}

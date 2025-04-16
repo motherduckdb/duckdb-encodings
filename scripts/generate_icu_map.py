@@ -149,15 +149,32 @@ def generate_code_set_map(folder_path):
     
 def match_codecs(code_set_map, python_standard_codecs):
     matches = []
-
-    for codec, aliases in python_standard_codecs.items():
-        for code_set_name, info in code_set_map.items():
+    seen_matches = set()  # This will keep track of already added matches
+    for code_set_name, info in code_set_map.items():
+        match = False
+        for codec, aliases in python_standard_codecs.items():
+            # Check for direct match or alias match
             if code_set_name == codec or any(alias.lower() == code_set_name.lower() for alias in aliases):
-                matches.append((codec, code_set_name, info["Encoding name"], info["file_name"]))
-
+                match_tuple = (codec, code_set_name, info["Encoding name"], info["file_name"])
+                if codec.lower() not in seen_matches:
+                    matches.append(match_tuple)
+                    seen_matches.add(codec.lower())  # Add to seen_matches set
+                match = True
+                break
+            # Check for encoding name match or alias match
             if info["Encoding name"] and (info["Encoding name"].lower() == codec.lower() or
                                           any(alias.lower() == info["Encoding name"].lower() for alias in aliases)):
-                matches.append((codec, code_set_name, info["Encoding name"], info["file_name"]))
+                match_tuple = (codec, code_set_name, info["Encoding name"], info["file_name"])
+                if codec.lower() not in seen_matches:
+                    matches.append(match_tuple)
+                    seen_matches.add(codec.lower())  # Add to seen_matches set
+                match = True
+                break
+        if not match:
+            match_tuple = (code_set_name, code_set_name, info["Encoding name"], info["file_name"])
+            if code_set_name.lower() not in seen_matches:
+                matches.append(match_tuple)
+                seen_matches.add(code_set_name.lower())  # Add to seen_matches set
 
     return matches
 
