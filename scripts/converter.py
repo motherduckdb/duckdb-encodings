@@ -132,10 +132,10 @@ def generate_decoded_chars(python_icu_encoding_map, output_dir="data"):
                         continue
 
 def write_utf8_representations_to_file(codepage_to_utf8, output_path):
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(output_path, 'wb') as f:
         for cp_bytes, utf8_bytes in sorted(codepage_to_utf8.items()):
-            utf8_str = utf8_bytes.decode('utf-8')
-            f.write(f"{utf8_str}\n")
+            # utf8_str = utf8_bytes.decode('utf-8')
+            f.write(cp_bytes+ b'\n')
 
 generated_path = os.path.join('src','include','generated')
 os.makedirs(generated_path, exist_ok=True)
@@ -182,7 +182,7 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
                 const {encoding[0].capitalize()}ToUtf generated_function;
                 const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
                                                 generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-                                                reinterpret_cast<uintptr_t>(&{encoding[0]}_to_utf8), sizeof({encoding[0]}_to_utf8) / sizeof({encoding[0]}_to_utf8[0]));
+                                                reinterpret_cast<uintptr_t>(&{encoding[0]}_to_utf8), std::size({encoding[0]}_to_utf8));
                 config.RegisterEncodeFunction(function);
             }}
         }};'''

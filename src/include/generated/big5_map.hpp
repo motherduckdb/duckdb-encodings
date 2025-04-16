@@ -20236,8 +20236,7 @@ public:
 		const Big5ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&big5_to_utf8),
-		                                sizeof(big5_to_utf8) / sizeof(big5_to_utf8[0]));
+		                                reinterpret_cast<uintptr_t>(&big5_to_utf8), std::size(big5_to_utf8));
 		config.RegisterEncodeFunction(function);
 	}
 };
