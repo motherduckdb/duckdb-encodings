@@ -23,8 +23,8 @@ namespace duckdb_encodings {
 class Gb18030ToUtf {
 public:
 	Gb18030ToUtf() {};
-	const idx_t lookup_bytes = 1;
-	const idx_t max_bytes_per_byte = 1;
+	const idx_t lookup_bytes = 4;
+	const idx_t max_bytes_per_byte = 4;
 	const string name = "gb18030";
 	// Generated from: gb-18030-2005.ucm
 	const map<vector<uint8_t>, vector<uint8_t>> gb18030_to_utf8 = {

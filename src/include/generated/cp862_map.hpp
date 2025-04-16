@@ -24,7 +24,7 @@ class Cp862ToUtf {
 public:
 	Cp862ToUtf() {};
 	const idx_t lookup_bytes = 1;
-	const idx_t max_bytes_per_byte = 1;
+	const idx_t max_bytes_per_byte = 3;
 	const string name = "cp862";
 	// Generated from: glibc-IBM862-2.1.2.ucm
 	const map<vector<uint8_t>, vector<uint8_t>> cp862_to_utf8 = {

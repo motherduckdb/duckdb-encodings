@@ -23,8 +23,8 @@ namespace duckdb_encodings {
 class Big5ToUtf {
 public:
 	Big5ToUtf() {};
-	const idx_t lookup_bytes = 1;
-	const idx_t max_bytes_per_byte = 1;
+	const idx_t lookup_bytes = 2;
+	const idx_t max_bytes_per_byte = 3;
 	const string name = "big5";
 	// Generated from: aix-big5-4.3.6.ucm
 	const map<vector<uint8_t>, vector<uint8_t>> big5_to_utf8 = {

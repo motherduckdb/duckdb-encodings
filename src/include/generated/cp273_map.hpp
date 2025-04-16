@@ -24,7 +24,7 @@ class Cp273ToUtf {
 public:
 	Cp273ToUtf() {};
 	const idx_t lookup_bytes = 1;
-	const idx_t max_bytes_per_byte = 1;
+	const idx_t max_bytes_per_byte = 3;
 	const string name = "cp273";
 	// Generated from: glibc-IBM273-2.1.2.ucm
 	const map<vector<uint8_t>, vector<uint8_t>> cp273_to_utf8 = {

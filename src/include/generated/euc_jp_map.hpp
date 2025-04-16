@@ -23,8 +23,8 @@ namespace duckdb_encodings {
 class Euc_jpToUtf {
 public:
 	Euc_jpToUtf() {};
-	const idx_t lookup_bytes = 1;
-	const idx_t max_bytes_per_byte = 1;
+	const idx_t lookup_bytes = 3;
+	const idx_t max_bytes_per_byte = 3;
 	const string name = "euc_jp";
 	// Generated from: solaris-eucJP-2.7.ucm
 	const map<vector<uint8_t>, vector<uint8_t>> euc_jp_to_utf8 = {

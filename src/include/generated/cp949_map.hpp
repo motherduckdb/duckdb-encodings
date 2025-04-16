@@ -23,8 +23,8 @@ namespace duckdb_encodings {
 class Cp949ToUtf {
 public:
 	Cp949ToUtf() {};
-	const idx_t lookup_bytes = 1;
-	const idx_t max_bytes_per_byte = 1;
+	const idx_t lookup_bytes = 2;
+	const idx_t max_bytes_per_byte = 3;
 	const string name = "cp949";
 	// Generated from: glibc-UHC-2.1.2.ucm
 	const map<vector<uint8_t>, vector<uint8_t>> cp949_to_utf8 = {

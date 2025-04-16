@@ -24,7 +24,7 @@ class Cp857ToUtf {
 public:
 	Cp857ToUtf() {};
 	const idx_t lookup_bytes = 1;
-	const idx_t max_bytes_per_byte = 1;
+	const idx_t max_bytes_per_byte = 3;
 	const string name = "cp857";
 	// Generated from: glibc-IBM857-2.1.2.ucm
 	const map<vector<uint8_t>, vector<uint8_t>> cp857_to_utf8 = {

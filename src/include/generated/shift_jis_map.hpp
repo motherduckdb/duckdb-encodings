@@ -23,8 +23,8 @@ namespace duckdb_encodings {
 class Shift_jisToUtf {
 public:
 	Shift_jisToUtf() {};
-	const idx_t lookup_bytes = 1;
-	const idx_t max_bytes_per_byte = 1;
+	const idx_t lookup_bytes = 2;
+	const idx_t max_bytes_per_byte = 3;
 	const string name = "shift_jis";
 	// Generated from: glibc-SJIS-2.1.2.ucm
 	const map<vector<uint8_t>, vector<uint8_t>> shift_jis_to_utf8 = {
