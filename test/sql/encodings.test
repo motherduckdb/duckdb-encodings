@@ -5,5 +5,77 @@
 require encodings
 
 statement ok
+create or replace table T as FROM read_csv('data/test_ascii.csv', encoding = 'ascii', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
 create or replace table T as FROM read_csv('data/test_big5.csv', encoding = 'big5', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp037.csv', encoding = 'cp037', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp273.csv', encoding = 'cp273', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp424.csv', encoding = 'cp424', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp437.csv', encoding = 'cp437', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp500.csv', encoding = 'cp500', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp850.csv', encoding = 'cp850', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp852.csv', encoding = 'cp852', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp855.csv', encoding = 'cp855', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp857.csv', encoding = 'cp857', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp860.csv', encoding = 'cp860', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp861.csv', encoding = 'cp861', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp862.csv', encoding = 'cp862', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp863.csv', encoding = 'cp863', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp864.csv', encoding = 'cp864', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp865.csv', encoding = 'cp865', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp866.csv', encoding = 'cp866', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp869.csv', encoding = 'cp869', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp949.csv', encoding = 'cp949', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_cp1026.csv', encoding = 'cp1026', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_euc_jp.csv', encoding = 'euc_jp', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_gb18030.csv', encoding = 'gb18030', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_mac_roman.csv', encoding = 'mac_roman', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
+
+statement ok
+create or replace table T as FROM read_csv('data/test_shift_jis.csv', encoding = 'shift_jis', header = 0, quote = '', auto_detect = false, columns = {'a':'varchar'}, delim = '', strict_mode = false)
 

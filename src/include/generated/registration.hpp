@@ -13,14 +13,62 @@
 
 #pragma once
 
+#include "ascii_map.hpp"
 #include "big5_map.hpp"
+#include "cp037_map.hpp"
+#include "cp273_map.hpp"
+#include "cp424_map.hpp"
+#include "cp437_map.hpp"
+#include "cp500_map.hpp"
+#include "cp850_map.hpp"
+#include "cp852_map.hpp"
+#include "cp855_map.hpp"
+#include "cp857_map.hpp"
+#include "cp860_map.hpp"
+#include "cp861_map.hpp"
+#include "cp862_map.hpp"
+#include "cp863_map.hpp"
+#include "cp864_map.hpp"
+#include "cp865_map.hpp"
+#include "cp866_map.hpp"
+#include "cp869_map.hpp"
+#include "cp949_map.hpp"
+#include "cp1026_map.hpp"
+#include "euc_jp_map.hpp"
+#include "gb18030_map.hpp"
+#include "mac_roman_map.hpp"
+#include "shift_jis_map.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 class RegistrationEncodedFunctions {
 public:
 	static void RegisterFunctions(const DBConfig &config) {
+		AsciiToUtf::Register(config);
 		Big5ToUtf::Register(config);
+		Cp037ToUtf::Register(config);
+		Cp273ToUtf::Register(config);
+		Cp424ToUtf::Register(config);
+		Cp437ToUtf::Register(config);
+		Cp500ToUtf::Register(config);
+		Cp850ToUtf::Register(config);
+		Cp852ToUtf::Register(config);
+		Cp855ToUtf::Register(config);
+		Cp857ToUtf::Register(config);
+		Cp860ToUtf::Register(config);
+		Cp861ToUtf::Register(config);
+		Cp862ToUtf::Register(config);
+		Cp863ToUtf::Register(config);
+		Cp864ToUtf::Register(config);
+		Cp865ToUtf::Register(config);
+		Cp866ToUtf::Register(config);
+		Cp869ToUtf::Register(config);
+		Cp949ToUtf::Register(config);
+		Cp1026ToUtf::Register(config);
+		Euc_jpToUtf::Register(config);
+		Gb18030ToUtf::Register(config);
+		Mac_romanToUtf::Register(config);
+		Shift_jisToUtf::Register(config);
 	}
 };
 } // namespace duckdb_encodings
