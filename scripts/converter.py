@@ -30,11 +30,11 @@ namespace duckdb {
 namespace duckdb_encodings {
 class RegistrationEncodedFunctions {
 public:
-    static void RegisterFunctions(const DBConfig &config) {
+	static void RegisterFunctions(const DBConfig &config) {
 '''
 
 registration_class_footer = '''
-    }
+	}
 };
 } // namespace duckdb_encodings
 } // namespace duckdb
@@ -50,146 +50,177 @@ require encodings
 '''
 
 def unicode_to_utf8_bytes(codepoint: int) -> list[int]:
-    """Convert a Unicode codepoint to a list of UTF-8 bytes."""
-    return list(chr(codepoint).encode("utf-8"))
+	"""Convert a Unicode codepoint to a list of UTF-8 bytes."""
+	return list(chr(codepoint).encode("utf-8"))
 
 def parse_ucm_to_utf8_map(ucm_path):
-    codepage_to_utf8 = {}
-    max_utf8_len = 0
+	codepage_to_utf8 = {}
+	max_utf8_len = 0
 
-    with open(ucm_path, 'r', encoding='utf-8') as f:
-        in_charmap = False
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            if line == 'CHARMAP':
-                in_charmap = True
-                continue
-            if line.startswith('END CHARMAP'):
-                break
-            if not in_charmap:
-                continue
+	with open(ucm_path, 'r', encoding='utf-8') as f:
+		in_charmap = False
+		for line in f:
+			line = line.strip()
+			if not line or line.startswith('#'):
+				continue
+			if line == 'CHARMAP':
+				in_charmap = True
+				continue
+			if line.startswith('END CHARMAP'):
+				break
+			if not in_charmap:
+				continue
 
-            match = re.match(r'<U([0-9A-Fa-f]+)>\s+((?:\\x[0-9A-Fa-f]{2})+)\s+\|\d+', line)
-            if not match:
-                continue
+			match = re.match(r'<U([0-9A-Fa-f]+)>\s+((?:\\x[0-9A-Fa-f]{2})+)\s+\|\d+', line)
+			if not match:
+				continue
 
-            unicode_scalar = int(match.group(1), 16)
-            byte_seq = bytes(int(b[2:], 16) for b in re.findall(r'\\x[0-9A-Fa-f]{2}', match.group(2)))
+			unicode_scalar = int(match.group(1), 16)
+			byte_seq = bytes(int(b[2:], 16) for b in re.findall(r'\\x[0-9A-Fa-f]{2}', match.group(2)))
 
-            utf8_encoded = chr(unicode_scalar).encode('utf-8')
-            codepage_to_utf8[byte_seq] = utf8_encoded
+			utf8_encoded = chr(unicode_scalar).encode('utf-8')
+			codepage_to_utf8[byte_seq] = utf8_encoded
 
-    return codepage_to_utf8
+	return codepage_to_utf8
 
-def generate_cpp_map(encoding_name, codepage_to_utf8, filepath):
-    encoding_map_name = encoding[0].replace("-", "_").replace(".", "_")
-    if encoding_map_name[0].isdigit():
-        encoding_map_name = '_'+encoding_map_name
-    lines = [f'// Generated from: {filepath}',
-        f'static constexpr map_entry {encoding_map_name}_to_utf8[]  ='+' {'
-    ]
-    max_cp_len = 0
-    max_utf8_len = 0
-    for cp_bytes, utf8_bytes in sorted(codepage_to_utf8.items()):
-        cp_str = ''.join(f'\\x{b:02X}' for b in cp_bytes)
-        utf8_str = ''.join(f'\\x{b:02X}' for b in utf8_bytes)
-        lines.append(f'    {{ {len(cp_bytes)}, "{cp_str}", {len(utf8_bytes)}, "{utf8_str}" }},')
-        max_cp_len = max(max_cp_len, len(cp_bytes))
-        max_utf8_len = max(max_utf8_len, len(utf8_bytes))
+def generate_cpp_map(class_name,encoding_name, codepage_to_utf8, filepath):
+	encoding_map_name = encoding[0].replace("-", "_").replace(".", "_")
+	if encoding_map_name[0].isdigit():
+		encoding_map_name = '_'+encoding_map_name
+	lines = [f'// Generated from: {filepath}',
+		f'const map_entry {class_name}::{encoding_map_name}_to_utf8[]  ='+' {'
+	]
+	max_cp_len = 0
+	max_utf8_len = 0
+	for cp_bytes, utf8_bytes in sorted(codepage_to_utf8.items()):
+		cp_str = ''.join(f'\\x{b:02X}' for b in cp_bytes)
+		utf8_str = ''.join(f'\\x{b:02X}' for b in utf8_bytes)
+		lines.append(f'    {{ {len(cp_bytes)}, "{cp_str}", {len(utf8_bytes)}, "{utf8_str}" }},')
+		max_cp_len = max(max_cp_len, len(cp_bytes))
+		max_utf8_len = max(max_utf8_len, len(utf8_bytes))
 
-    lines.append('};')
-    return '\n'.join(lines), max_cp_len, max_utf8_len
+	lines.append('};')
+	return '\n'.join(lines), max_cp_len, max_utf8_len, len(codepage_to_utf8.items()), f"static const map_entry {encoding_map_name}_to_utf8[];"
 
 
 def write_utf8_representations_to_file(codepage_to_utf8, output_path):
-    with open(output_path, 'wb') as f:
-        for cp_bytes, utf8_bytes in sorted(codepage_to_utf8.items()):
-            f.write(cp_bytes+ b'\n')
+	with open(output_path, 'wb') as f:
+		for cp_bytes, utf8_bytes in sorted(codepage_to_utf8.items()):
+			f.write(cp_bytes+ b'\n')
 
 generated_path = os.path.join('src','include','generated')
 os.makedirs(generated_path, exist_ok=True)
 
+generated_path_cpp = os.path.join('src','generated')
+os.makedirs(generated_path, exist_ok=True)
+
 with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8") as registration_file:
-    registration_file.write(registration_class_header_1)
-    for encoding in python_icu_encoding_map:
-        registration_file.write(f'#include "generated/{encoding[0]}_map.hpp"\n')
-    registration_file.write(registration_class_header_2)
+	registration_file.write(registration_class_header_1)
+	for encoding in python_icu_encoding_map:
+		registration_file.write(f'#include "generated/{encoding[0].lower()}_map.hpp"\n')
+	registration_file.write(registration_class_header_2)
 
-    with open(os.path.join('test','sql', 'encodings.test'), "w", encoding="utf-8") as sql_test:
-        sql_test.write(sqltest_header)
+	with open(os.path.join('test','sql', 'encodings.test'), "w", encoding="utf-8") as sql_test:
+		sql_test.write(sqltest_header)
+		with open(os.path.join(generated_path_cpp, 'CMakeLists.txt'), "w", encoding="utf-8") as cmake_file:
+			cmake_file.write("add_library_unity(\n")
+			cmake_file.write("  duckdb_encodings_extension\n")
+			cmake_file.write("  OBJECT\n")
+			for encoding in python_icu_encoding_map:
+				print(encoding[0])
+				file_name = f'{encoding[0].lower()}_map'
+				header_encoding_generated = f'''//===----------------------------------------------------------------------===//
+			//
+			//                         DuckDB - Encodings
+			//
+			// generated/{file_name}.hpp
+			//
+			//
+			//===----------------------------------------------------------------------===//
 
-        for encoding in python_icu_encoding_map:
-            print(encoding[0])
-            file_name = f'{encoding[0].lower()}_map.hpp'
-            header_encoding_generated = f'''//===----------------------------------------------------------------------===//
-        //
-        //                         DuckDB - Encodings
-        //
-        // generated/{file_name}
-        //
-        //
-        //===----------------------------------------------------------------------===//
+			// !!!!!!!
+			// WARNING: this file is autogenerated by scripts/converter.py, manual changes will be overwritten
+			// !!!!!!!
 
-        // !!!!!!!
-        // WARNING: this file is autogenerated by scripts/converter.py, manual changes will be overwritten
-        // !!!!!!!
+			#pragma once
 
-        #pragma once
+			#include "duckdb/main/config.hpp"
+			#include "duckdb/function/encoding_function.hpp"
+			#include "generated_encoded_function.hpp"
 
-        #include "duckdb/main/config.hpp"
-        #include "duckdb/function/encoding_function.hpp"
-        #include "generated_encoded_function.hpp"
-
-        namespace duckdb {{
-        namespace duckdb_encodings {{
+			namespace duckdb {{
+			namespace duckdb_encodings {{
 
 
-        '''
-            
-            encoding_class_name = encoding[0].capitalize().replace("-", "_").replace(".", "_")
-            if encoding_class_name[0].isdigit():
-                encoding_class_name = '_'+encoding_class_name
-            encoding_map_name = encoding[0].replace("-", "_").replace(".", "_")
-            if encoding_map_name[0].isdigit():
-                encoding_map_name = '_'+encoding_map_name
-            class_bottom = f'''
-              static void Register(const DBConfig &config) {{
-                const {encoding_class_name}ToUtf generated_function;
-                const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-                                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-                                                reinterpret_cast<uintptr_t>(&{encoding_map_name}_to_utf8), std::size({encoding_map_name}_to_utf8));
-                config.RegisterEncodeFunction(function);
-            }}
-        }};'''
-            encoding_file_path = os.path.join('third_party','icu_encodings',encoding[3])
-            bytemap = parse_ucm_to_utf8_map(encoding_file_path)
-            registration_file.write(f'       {encoding_class_name}ToUtf::Register(config);\n')
+			'''
+				
+				encoding_class_name = encoding[0].capitalize().replace("-", "_").replace(".", "_")
+				if encoding_class_name[0].isdigit():
+					encoding_class_name = '_'+encoding_class_name
+				encoding_map_name = encoding[0].replace("-", "_").replace(".", "_")
+				if encoding_map_name[0].isdigit():
+					encoding_map_name = '_'+encoding_map_name
+				class_bottom = f'''
+				  static void Register(const DBConfig &config) {{
+					const {encoding_class_name}ToUtf generated_function;
+					const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+													generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+													reinterpret_cast<uintptr_t>(&{encoding_map_name}_to_utf8), generated_function.size);
+					config.RegisterEncodeFunction(function);
+				}}
+			}};'''
+				encoding_file_path = os.path.join('third_party','icu_encodings',encoding[3])
+				bytemap = parse_ucm_to_utf8_map(encoding_file_path)
+				registration_file.write(f'       {encoding_class_name}ToUtf::Register(config);\n')
 
-            encoding_map_file_path = os.path.join(generated_path,file_name)
-            with open(encoding_map_file_path, "w", encoding="utf-8") as out_file:
-                # These are the matched encoding
-                cpp_output, max_lookup, max_output = generate_cpp_map(encoding[0], bytemap, encoding[3])
-                out_file.write(header_encoding_generated)
-                class_top = f'''class {encoding_class_name}ToUtf {{
-        public:
-            {encoding_class_name}ToUtf() {{}};
-            const idx_t lookup_bytes = {max_lookup};
-            const idx_t max_bytes_per_byte = {max_output};
-            const string name = "{encoding[0]}";
-            '''
-                out_file.write(class_top)
-                out_file.write(cpp_output)
-                out_file.write(class_bottom)
-                out_file.write(footer_encoding_generted)
-            # Write CSV Test
-            test_file_path = os.path.join('data',f'test_{encoding[0]}.csv')
-            write_utf8_representations_to_file(bytemap,test_file_path)
-            sql_test_body = f'''statement ok
-create or replace table T as FROM read_csv('{test_file_path}', encoding = '{encoding[0]}', header = 0, quote = '', auto_detect = false, columns = {{'a':'varchar'}}, delim = '', strict_mode = false)
+				encoding_map_file_path = os.path.join(generated_path,file_name+'.hpp')
+				cpp_output = ''
+				# Write hpp Map
+				with open(encoding_map_file_path, "w", encoding="utf-8") as out_file:
+					# These are the matched encoding
+					cpp_output, max_lookup, max_output, map_size, hpp_output = generate_cpp_map(encoding_class_name,encoding[0], bytemap, encoding[3])
+					out_file.write(header_encoding_generated)
+					class_top = f'''class {encoding_class_name}ToUtf {{
+			public:
+				{encoding_class_name}ToUtf() {{}};
+				const idx_t lookup_bytes = {max_lookup};
+				const idx_t max_bytes_per_byte = {max_output};
+				const string name = "{encoding[0]}";
+				const idx_t size = {map_size};
+				'''
+					out_file.write(class_top)
+					out_file.write(hpp_output)
+					out_file.write(class_bottom)
+					out_file.write(footer_encoding_generted)
+				
+				# Write cpp map
+				encoding_map_cpp_file_path = os.path.join(generated_path_cpp,file_name+'.cpp')
+				with open(encoding_map_cpp_file_path, "w", encoding="utf-8") as out_file:
+					class_top =f'''#include "generated/{encoding[0].lower()}_map.hpp"
 
-'''
-            sql_test.write(sql_test_body)
-        registration_file.write(registration_class_footer)
+	namespace duckdb {{
+	namespace duckdb_encodings {{
+
+	'''
+					class_bottom = '''
+	} // namespace duckdb_encodings
+	} // namespace duckdb
+	'''
+					out_file.write(class_top)
+					out_file.write(cpp_output)
+					out_file.write(class_bottom)
+				cmake_file.write(f' {file_name}.cpp\n')
+				# Write CSV Test
+				test_file_path = os.path.join('data',f'test_{encoding[0]}.csv')
+				write_utf8_representations_to_file(bytemap,test_file_path)
+				sql_test_body = f'''statement ok
+	create or replace table T as FROM read_csv('{test_file_path}', encoding = '{encoding[0]}', header = 0, quote = '', auto_detect = false, columns = {{'a':'varchar'}}, delim = '', strict_mode = false)
+
+	'''
+			sql_test.write(sql_test_body)
+			cmake_file.write('  )\n') 
+			cmake_file.write('set(ALL_OBJECT_FILES\n')
+			cmake_file.write('  ${ALL_OBJECT_FILES} $<TARGET_OBJECTS:duckdb_encodings_extension>\n')
+			cmake_file.write('  PARENT_SCOPE)\n')
+		registration_file.write(registration_class_footer)
 

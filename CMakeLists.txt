@@ -12,8 +12,11 @@ include_directories(src/include)
 set(EXTENSION_SOURCES src/encodings_extension.cpp
                       src/generated_encoded_functions.cpp)
 
-build_static_extension(${TARGET_NAME} ${EXTENSION_SOURCES})
-build_loadable_extension(${TARGET_NAME} " " ${EXTENSION_SOURCES})
+add_subdirectory(src/generated)
+
+build_static_extension(${TARGET_NAME} ${EXTENSION_SOURCES} ${ALL_OBJECT_FILES})
+build_loadable_extension(${TARGET_NAME} "${ALL_OBJECT_FILES}"
+                         ${EXTENSION_SOURCES})
 
 if(MSVC)
   add_compile_options(/bigobj)
