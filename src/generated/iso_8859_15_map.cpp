@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-ISO_8859_15-2.1.2.ucm
-const map_entry Iso_8859_15::ISO_8859_15_to_utf8[] = {
+const map_entry Iso_8859_15ToUtf::ISO_8859_15_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},         {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-PCK-2.7.ucm
-const map_entry Pck::PCK_to_utf8[] = {
+const map_entry PckToUtf::PCK_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

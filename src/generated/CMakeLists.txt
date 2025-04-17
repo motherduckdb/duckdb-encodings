@@ -1040,7 +1040,7 @@ add_library_unity(
  java-iso8859_7-1.3_p_map.cpp
  iso-8859_6-1999_map.cpp
  ibm-4948_p100-1995_map.cpp
-  )
+)
 set(ALL_OBJECT_FILES
   ${ALL_OBJECT_FILES} $<TARGET_OBJECTS:duckdb_encodings_extension>
   PARENT_SCOPE)

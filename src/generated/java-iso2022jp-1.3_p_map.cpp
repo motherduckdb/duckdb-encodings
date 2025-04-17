@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: java-ISO2022JP-1.3_P.ucm
-const map_entry Java_iso2022jp_1_3_p::java_ISO2022JP_1_3_P_to_utf8[] = {
+const map_entry Java_iso2022jp_1_3_pToUtf::java_ISO2022JP_1_3_P_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

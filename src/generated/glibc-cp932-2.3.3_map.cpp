@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-CP932-2.3.3.ucm
-const map_entry Glibc_cp932_2_3_3::glibc_CP932_2_3_3_to_utf8[] = {
+const map_entry Glibc_cp932_2_3_3ToUtf::glibc_CP932_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

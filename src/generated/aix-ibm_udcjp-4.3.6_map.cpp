@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-IBM_udcJP-4.3.6.ucm
-const map_entry Aix_ibm_udcjp_4_3_6::aix_IBM_udcJP_4_3_6_to_utf8[] = {
+const map_entry Aix_ibm_udcjp_4_3_6ToUtf::aix_IBM_udcJP_4_3_6_to_utf8[] = {
     {2, "\x2D\x21", 3, "\xE2\x91\xA0"}, {2, "\x2D\x22", 3, "\xE2\x91\xA1"}, {2, "\x2D\x23", 3, "\xE2\x91\xA2"},
     {2, "\x2D\x24", 3, "\xE2\x91\xA3"}, {2, "\x2D\x25", 3, "\xE2\x91\xA4"}, {2, "\x2D\x26", 3, "\xE2\x91\xA5"},
     {2, "\x2D\x27", 3, "\xE2\x91\xA6"}, {2, "\x2D\x28", 3, "\xE2\x91\xA7"}, {2, "\x2D\x29", 3, "\xE2\x91\xA8"},

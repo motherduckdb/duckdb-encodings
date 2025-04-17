@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: java-Cp943-1.2.2.ucm
-const map_entry Java_cp943_1_2_2::java_Cp943_1_2_2_to_utf8[] = {
+const map_entry Java_cp943_1_2_2ToUtf::java_Cp943_1_2_2_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

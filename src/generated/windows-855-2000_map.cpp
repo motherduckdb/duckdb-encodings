@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: windows-855-2000.ucm
-const map_entry Windows_855_2000::windows_855_2000_to_utf8[] = {
+const map_entry Windows_855_2000ToUtf::windows_855_2000_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 3, "\xE2\x98\xBA"}, {1, "\x02", 3, "\xE2\x98\xBB"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 3, "\xE2\x88\x99"}, {1, "\x08", 3, "\xE2\x97\x98"},

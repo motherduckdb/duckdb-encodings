@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-1363_P10A-1997.ucm
-const map_entry Ibm_1363_p10a_1997::ibm_1363_P10A_1997_to_utf8[] = {
+const map_entry Ibm_1363_p10a_1997ToUtf::ibm_1363_P10A_1997_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

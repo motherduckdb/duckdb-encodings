@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-970_P110_P110-2006_U2.ucm
-const map_entry Ibm_970_p110_p110_2006_u2::ibm_970_P110_P110_2006_U2_to_utf8[] = {
+const map_entry Ibm_970_p110_p110_2006_u2ToUtf::ibm_970_P110_P110_2006_U2_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

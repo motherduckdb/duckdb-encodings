@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: osd-EBCDIC-DF04-15.ucm
-const map_entry Osd_ebcdic_df04_15::osd_EBCDIC_DF04_15_to_utf8[] = {
+const map_entry Osd_ebcdic_df04_15ToUtf::osd_EBCDIC_DF04_15_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 2, "\xC2\x85"}, {1, "\x05", 1, "\x09"},     {1, "\x06", 2, "\xC2\x86"}, {1, "\x07", 1, "\x7F"},
     {1, "\x08", 2, "\xC2\x87"}, {1, "\x09", 2, "\xC2\x8D"}, {1, "\x0A", 2, "\xC2\x8E"}, {1, "\x0B", 1, "\x0B"},

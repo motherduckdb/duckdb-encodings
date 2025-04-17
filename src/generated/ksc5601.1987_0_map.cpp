@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-KSC5601.1987_0-4.3.6.ucm
-const map_entry Ksc5601_1987_0::KSC5601_1987_0_to_utf8[] = {
+const map_entry Ksc5601_1987_0ToUtf::KSC5601_1987_0_to_utf8[] = {
     {2, "\xA1\xA1", 3, "\xE3\x80\x80"}, {2, "\xA1\xA2", 3, "\xE3\x80\x81"}, {2, "\xA1\xA3", 3, "\xE3\x80\x82"},
     {2, "\xA1\xA4", 3, "\xE3\x83\xBB"}, {2, "\xA1\xA5", 3, "\xE2\x80\xA5"}, {2, "\xA1\xA6", 3, "\xE2\x80\xA6"},
     {2, "\xA1\xA7", 2, "\xC2\xA8"},     {2, "\xA1\xA8", 3, "\xE3\x80\x83"}, {2, "\xA1\xA9", 3, "\xE2\x80\x90"},

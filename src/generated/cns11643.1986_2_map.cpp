@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-CNS11643.1986_2-4.3.6.ucm
-const map_entry Cns11643_1986_2::CNS11643_1986_2_to_utf8[] = {
+const map_entry Cns11643_1986_2ToUtf::CNS11643_1986_2_to_utf8[] = {
     {2, "\x21\x21", 3, "\xE4\xB9\x82"}, {2, "\x21\x22", 3, "\xE4\xB9\x9C"}, {2, "\x21\x23", 3, "\xE5\x87\xB5"},
     {2, "\x21\x24", 3, "\xE5\x8C\x9A"}, {2, "\x21\x25", 3, "\xE5\x8E\x82"}, {2, "\x21\x26", 3, "\xE4\xB8\x87"},
     {2, "\x21\x27", 3, "\xE4\xB8\x8C"}, {2, "\x21\x28", 3, "\xE4\xB9\x87"}, {2, "\x21\x29", 3, "\xE4\xBA\x8D"},

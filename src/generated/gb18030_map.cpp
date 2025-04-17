@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: gb-18030-2005.ucm
-const map_entry Gb18030::gb18030_to_utf8[] = {
+const map_entry Gb18030ToUtf::gb18030_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

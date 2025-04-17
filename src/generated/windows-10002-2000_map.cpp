@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: windows-10002-2000.ucm
-const map_entry Windows_10002_2000::windows_10002_2000_to_utf8[] = {
+const map_entry Windows_10002_2000ToUtf::windows_10002_2000_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

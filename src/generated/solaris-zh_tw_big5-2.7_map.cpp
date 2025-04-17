@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-zh_TW_big5-2.7.ucm
-const map_entry Solaris_zh_tw_big5_2_7::solaris_zh_TW_big5_2_7_to_utf8[] = {
+const map_entry Solaris_zh_tw_big5_2_7ToUtf::solaris_zh_TW_big5_2_7_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

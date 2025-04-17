@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-942_P120-1999.ucm
-const map_entry Ibm_942_p120_1999::ibm_942_P120_1999_to_utf8[] = {
+const map_entry Ibm_942_p120_1999ToUtf::ibm_942_P120_1999_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 3, "\xE2\x95\x94"},
     {1, "\x02", 3, "\xE2\x95\x97"},

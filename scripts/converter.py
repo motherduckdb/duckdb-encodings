@@ -88,7 +88,7 @@ def generate_cpp_map(class_name,encoding_name, codepage_to_utf8, filepath):
 	if encoding_map_name[0].isdigit():
 		encoding_map_name = '_'+encoding_map_name
 	lines = [f'// Generated from: {filepath}',
-		f'const map_entry {class_name}::{encoding_map_name}_to_utf8[]  ='+' {'
+		f'const map_entry {class_name}ToUtf::{encoding_map_name}_to_utf8[]  ='+' {'
 	]
 	max_cp_len = 0
 	max_utf8_len = 0
@@ -214,11 +214,9 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 				test_file_path = os.path.join('data',f'test_{encoding[0]}.csv')
 				write_utf8_representations_to_file(bytemap,test_file_path)
 				sql_test_body = f'''statement ok
-	create or replace table T as FROM read_csv('{test_file_path}', encoding = '{encoding[0]}', header = 0, quote = '', auto_detect = false, columns = {{'a':'varchar'}}, delim = '', strict_mode = false)
-
-	'''
-			sql_test.write(sql_test_body)
-			cmake_file.write('  )\n') 
+create or replace table T as FROM read_csv('{test_file_path}', encoding = '{encoding[0]}', header = 0, quote = '', auto_detect = false, columns = {{'a':'varchar'}}, delim = '', strict_mode = false)\n\n'''
+				sql_test.write(sql_test_body)
+			cmake_file.write(')\n') 
 			cmake_file.write('set(ALL_OBJECT_FILES\n')
 			cmake_file.write('  ${ALL_OBJECT_FILES} $<TARGET_OBJECTS:duckdb_encodings_extension>\n')
 			cmake_file.write('  PARENT_SCOPE)\n')
