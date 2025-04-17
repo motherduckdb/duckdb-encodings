@@ -21,6 +21,10 @@ set(EXTENSION_SOURCES src/encodings_extension.cpp
 build_static_extension(${TARGET_NAME} ${EXTENSION_SOURCES})
 build_loadable_extension(${TARGET_NAME} " " ${EXTENSION_SOURCES})
 
+if (MSVC)
+  add_compile_options(/bigobj)
+endif()
+
 set_property(TARGET ${EXTENSION_NAME} PROPERTY CXX_STANDARD 17)
 set_property(TARGET ${EXTENSION_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(TARGET ${LOADABLE_EXTENSION_NAME} PROPERTY CXX_STANDARD 17)
