@@ -122,7 +122,7 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 
         for encoding in python_icu_encoding_map:
             print(encoding[0])
-            file_name = f'{encoding[0]}_map.hpp'
+            file_name = f'{encoding[0].lower()}_map.hpp'
             header_encoding_generated = f'''//===----------------------------------------------------------------------===//
         //
         //                         DuckDB - Encodings

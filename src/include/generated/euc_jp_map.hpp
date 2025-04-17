@@ -2,7 +2,7 @@
 //
 //                         DuckDB - Encodings
 //
-// generated/EUC_JP_map.hpp
+// generated/euc_jp_map.hpp
 //
 //
 //===----------------------------------------------------------------------===//
