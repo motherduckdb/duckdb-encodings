@@ -211,7 +211,7 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 					out_file.write(class_bottom)
 				cmake_file.write(f' {file_name}.cpp\n')
 				# Write CSV Test
-				test_file_path = os.path.join('data',f'test_{encoding[0]}.csv')
+				test_file_path = os.path.join('data',f'test_{encoding[0].lower()}.csv')
 				write_utf8_representations_to_file(bytemap,test_file_path)
 				sql_test_body = f'''statement ok
 create or replace table T as FROM read_csv('{test_file_path}', encoding = '{encoding[0]}', header = 0, quote = '', auto_detect = false, columns = {{'a':'varchar'}}, delim = '', strict_mode = false)\n\n'''
