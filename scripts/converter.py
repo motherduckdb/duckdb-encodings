@@ -114,7 +114,7 @@ os.makedirs(generated_path, exist_ok=True)
 with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8") as registration_file:
     registration_file.write(registration_class_header_1)
     for encoding in python_icu_encoding_map:
-        registration_file.write(f'#include "{encoding[0]}_map.hpp"\n')
+        registration_file.write(f'#include "generated/{encoding[0]}_map.hpp"\n')
     registration_file.write(registration_class_header_2)
 
     with open(os.path.join('test','sql', 'encodings.test'), "w", encoding="utf-8") as sql_test:

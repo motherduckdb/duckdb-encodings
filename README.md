@@ -25,10 +25,12 @@ If it's necessary to regenerate the code (e.g., due to a bug fix in the replacem
 python scripts/converter.py
 ```
 
-Note that the script does not generates formatted code, so you must also run:
+Note that the script does not generate formatted code, so you must also run:
 ```bash
 make format
 ```
+
+It is also important to notice that the `scripts/converter.py` script also generates the `test/sql/encodings.test` test file.
 
 ### Build steps
 Now to build the extension, run:

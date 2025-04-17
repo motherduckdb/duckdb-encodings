@@ -1,0 +1,50 @@
+# name: test/sql/shift_jis.test
+# description: Test a few shift-jis encoded files
+# group: [encodings]
+
+require encodings
+
+query III
+FROM read_csv('data/shift_jis/sample.csv', encoding='shift_jis')
+----
+宮崎市	宮崎市	宮崎市橘通西1丁目1番1号
+都城市	都城市	都城市姫城町6街区21号
+延岡市	延岡市	延岡市東本小路2番地1　
+日南市	日南市	日南市中央通1丁目1番地1　
+NULL	NULL	NULL
+変換元住所という名の列の住所の座標を取得します。上記はC列ですがどこでもいいです。	NULL	NULL
+多少ずれるので画面上で修正してください。ポイント上で右クリック！そしてドラッグ！	NULL	NULL
+その後、右クリック→ファイル→csv保存してください。	NULL	NULL
+エンコードはshift-jisです。Macの人は要注意！	NULL	NULL
+
+query III
+FROM read_csv('data/shift_jis/frequency.csv', encoding='shift_jis') order by all limit 10;
+----
+動詞	あてる	1
+動詞	あり	1
+動詞	いえる	1
+動詞	いける	1
+動詞	うたう	1
+動詞	おく	1
+動詞	おる	1
+動詞	かかる	1
+動詞	かける	1
+動詞	かざす	1
+
+query I
+SELECT count(*) FROM read_csv('data/shift_jis/frequency.csv', encoding='shift_jis')
+----
+4337
+
+loop buffer_size 30 60
+
+statement ok
+create or replace table T as FROM read_csv('data/shift_jis/frequency.csv', encoding='shift_jis')
+
+
+query I
+SELECT count(*) FROM T
+----
+4337
+
+endloop
