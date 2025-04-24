@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "macos-36_1-10.2";
 	const idx_t size = 256;
-	static const map_entry macos_36_1_10_2_to_utf8[];
+	DUCKDB_API static const map_entry macos_36_1_10_2_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Macos_36_1_10_2ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

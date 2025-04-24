@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "EBCDIC_ES_A";
 	const idx_t size = 155;
-	static const map_entry EBCDIC_ES_A_to_utf8[];
+	DUCKDB_API static const map_entry EBCDIC_ES_A_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ebcdic_es_aToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

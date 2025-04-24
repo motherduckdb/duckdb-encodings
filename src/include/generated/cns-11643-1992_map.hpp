@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 4;
 	const string name = "CNS-11643-1992";
 	const idx_t size = 48235;
-	static const map_entry CNS_11643_1992_to_utf8[];
+	DUCKDB_API static const map_entry CNS_11643_1992_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Cns_11643_1992ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

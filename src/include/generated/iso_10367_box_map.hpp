@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "ISO_10367_BOX";
 	const idx_t size = 189;
-	static const map_entry ISO_10367_BOX_to_utf8[];
+	DUCKDB_API static const map_entry ISO_10367_BOX_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Iso_10367_boxToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

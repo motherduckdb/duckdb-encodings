@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 1;
 	const string name = "ascii";
 	const idx_t size = 128;
-	static const map_entry ascii_to_utf8[];
+	DUCKDB_API static const map_entry ascii_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const AsciiToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

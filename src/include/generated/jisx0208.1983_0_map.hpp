@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "JISX0208.1983_0";
 	const idx_t size = 6877;
-	static const map_entry JISX0208_1983_0_to_utf8[];
+	DUCKDB_API static const map_entry JISX0208_1983_0_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Jisx0208_1983_0ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

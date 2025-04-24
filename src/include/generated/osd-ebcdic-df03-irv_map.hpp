@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "osd-EBCDIC-DF03-IRV";
 	const idx_t size = 225;
-	static const map_entry osd_EBCDIC_DF03_IRV_to_utf8[];
+	DUCKDB_API static const map_entry osd_EBCDIC_DF03_IRV_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Osd_ebcdic_df03_irvToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

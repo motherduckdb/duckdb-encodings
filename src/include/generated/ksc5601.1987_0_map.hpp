@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "KSC5601.1987_0";
 	const idx_t size = 8412;
-	static const map_entry KSC5601_1987_0_to_utf8[];
+	DUCKDB_API static const map_entry KSC5601_1987_0_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ksc5601_1987_0ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

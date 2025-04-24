@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "CP1250";
 	const idx_t size = 251;
-	static const map_entry CP1250_to_utf8[];
+	DUCKDB_API static const map_entry CP1250_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Cp1250ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

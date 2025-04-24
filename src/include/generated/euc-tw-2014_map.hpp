@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 4;
 	const string name = "euc-tw-2014";
 	const idx_t size = 62382;
-	static const map_entry euc_tw_2014_to_utf8[];
+	DUCKDB_API static const map_entry euc_tw_2014_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Euc_tw_2014ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

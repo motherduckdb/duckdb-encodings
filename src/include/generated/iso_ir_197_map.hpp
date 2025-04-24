@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "ISO_IR_197";
 	const idx_t size = 248;
-	static const map_entry ISO_IR_197_to_utf8[];
+	DUCKDB_API static const map_entry ISO_IR_197_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Iso_ir_197ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

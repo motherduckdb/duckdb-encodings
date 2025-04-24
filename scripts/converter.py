@@ -100,7 +100,7 @@ def generate_cpp_map(class_name,encoding_name, codepage_to_utf8, filepath):
 		max_utf8_len = max(max_utf8_len, len(utf8_bytes))
 
 	lines.append('};')
-	return '\n'.join(lines), max_cp_len, max_utf8_len, len(codepage_to_utf8.items()), f"static const map_entry {encoding_map_name}_to_utf8[];"
+	return '\n'.join(lines), max_cp_len, max_utf8_len, len(codepage_to_utf8.items()), f"DUCKDB_API static const map_entry {encoding_map_name}_to_utf8[];"
 
 
 def write_utf8_representations_to_file(codepage_to_utf8, output_path):

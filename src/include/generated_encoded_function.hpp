@@ -33,17 +33,6 @@ public:
 	static const map_entry *FindEntry(const map_entry *map, size_t map_size, const char *search_key, size_t search_len);
 };
 
-// { 2, "\xFE\xFC", 3, (const char[]){ static_cast<char>(0xEE), static_cast<char>(0x8C), static_cast<char>(0x8E) } },
-
-// static void Register(const DBConfig &config) {
-//                 const Big5ToUtf generated_function;
-//                 const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-//                                                 generated_function.max_bytes_per_byte,
-//                                                 generated_function.lookup_bytes,
-//                                                 reinterpret_cast<uintptr_t>(generated_function.big5_to_utf8),
-//                                                 sizeof(generated_function.big5_to_utf8));
-//                 config.RegisterEncodeFunction(function);
-//             }
 } // namespace duckdb_encodings
 
 } // namespace duckdb

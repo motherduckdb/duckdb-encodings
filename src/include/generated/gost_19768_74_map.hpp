@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "GOST_19768_74";
 	const idx_t size = 228;
-	static const map_entry GOST_19768_74_to_utf8[];
+	DUCKDB_API static const map_entry GOST_19768_74_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Gost_19768_74ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

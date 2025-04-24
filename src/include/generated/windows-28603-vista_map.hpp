@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "windows-28603-vista";
 	const idx_t size = 256;
-	static const map_entry windows_28603_vista_to_utf8[];
+	DUCKDB_API static const map_entry windows_28603_vista_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Windows_28603_vistaToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

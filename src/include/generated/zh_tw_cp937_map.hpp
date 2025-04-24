@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "zh_TW_cp937";
 	const idx_t size = 20207;
-	static const map_entry zh_TW_cp937_to_utf8[];
+	DUCKDB_API static const map_entry zh_TW_cp937_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Zh_tw_cp937ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "CWI";
 	const idx_t size = 256;
-	static const map_entry CWI_to_utf8[];
+	DUCKDB_API static const map_entry CWI_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const CwiToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

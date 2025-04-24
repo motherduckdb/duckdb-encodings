@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "IBM_udcJP_GR";
 	const idx_t size = 2336;
-	static const map_entry IBM_udcJP_GR_to_utf8[];
+	DUCKDB_API static const map_entry IBM_udcJP_GR_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ibm_udcjp_grToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

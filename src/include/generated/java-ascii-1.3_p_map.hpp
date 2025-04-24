@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 1;
 	const string name = "java-ASCII-1.3_P";
 	const idx_t size = 128;
-	static const map_entry java_ASCII_1_3_P_to_utf8[];
+	DUCKDB_API static const map_entry java_ASCII_1_3_P_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Java_ascii_1_3_pToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

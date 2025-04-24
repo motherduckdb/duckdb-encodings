@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "osd-EBCDIC-DF04-1";
 	const idx_t size = 256;
-	static const map_entry osd_EBCDIC_DF04_1_to_utf8[];
+	DUCKDB_API static const map_entry osd_EBCDIC_DF04_1_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Osd_ebcdic_df04_1ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

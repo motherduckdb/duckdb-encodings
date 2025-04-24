@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "ANSI_X3.110";
 	const idx_t size = 401;
-	static const map_entry ANSI_X3_110_to_utf8[];
+	DUCKDB_API static const map_entry ANSI_X3_110_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ansi_x3_110ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
