@@ -32,8 +32,7 @@ public:
 		const Ibm_1388_p100_2024ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&ibm_1388_P100_2024_to_utf8),
-		                                generated_function.size);
+		                                ibm_1388_P100_2024_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

@@ -32,8 +32,7 @@ public:
 		const Solaris_zh_tw_big5_2_7ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&solaris_zh_TW_big5_2_7_to_utf8),
-		                                generated_function.size);
+		                                solaris_zh_TW_big5_2_7_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

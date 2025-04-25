@@ -32,7 +32,7 @@ public:
 		const Asmo_449ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&ASMO_449_to_utf8), generated_function.size);
+		                                ASMO_449_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

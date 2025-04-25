@@ -32,7 +32,7 @@ public:
 		const Java_sjis_1_3_pToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&java_SJIS_1_3_P_to_utf8), generated_function.size);
+		                                java_SJIS_1_3_P_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

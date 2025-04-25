@@ -32,8 +32,7 @@ public:
 		const Glibc_cp932_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&glibc_CP932_2_3_3_to_utf8),
-		                                generated_function.size);
+		                                glibc_CP932_2_3_3_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

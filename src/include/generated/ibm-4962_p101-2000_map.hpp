@@ -32,8 +32,7 @@ public:
 		const Ibm_4962_p101_2000ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&ibm_4962_P101_2000_to_utf8),
-		                                generated_function.size);
+		                                ibm_4962_P101_2000_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

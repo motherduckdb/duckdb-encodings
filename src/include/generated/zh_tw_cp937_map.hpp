@@ -32,7 +32,7 @@ public:
 		const Zh_tw_cp937ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&zh_TW_cp937_to_utf8), generated_function.size);
+		                                zh_TW_cp937_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

@@ -165,7 +165,7 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 					const {encoding_class_name}ToUtf generated_function;
 					const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 													generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-													reinterpret_cast<uintptr_t>(&{encoding_map_name}_to_utf8), generated_function.size);
+													{encoding_map_name}_to_utf8, generated_function.size);
 					config.RegisterEncodeFunction(function);
 				}}
 			}};'''

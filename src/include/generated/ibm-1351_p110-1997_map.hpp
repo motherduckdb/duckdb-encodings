@@ -32,8 +32,7 @@ public:
 		const Ibm_1351_p110_1997ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&ibm_1351_P110_1997_to_utf8),
-		                                generated_function.size);
+		                                ibm_1351_P110_1997_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

@@ -32,7 +32,7 @@ public:
 		const Jisx0208_1983_0ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&JISX0208_1983_0_to_utf8), generated_function.size);
+		                                JISX0208_1983_0_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

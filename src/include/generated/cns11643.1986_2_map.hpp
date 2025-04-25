@@ -32,7 +32,7 @@ public:
 		const Cns11643_1986_2ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&CNS11643_1986_2_to_utf8), generated_function.size);
+		                                CNS11643_1986_2_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

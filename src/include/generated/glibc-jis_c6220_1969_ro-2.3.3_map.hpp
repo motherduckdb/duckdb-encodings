@@ -32,8 +32,7 @@ public:
 		const Glibc_jis_c6220_1969_ro_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&glibc_JIS_C6220_1969_RO_2_3_3_to_utf8),
-		                                generated_function.size);
+		                                glibc_JIS_C6220_1969_RO_2_3_3_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

@@ -32,8 +32,7 @@ public:
 		const Java_cp870_1_3_pToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&java_Cp870_1_3_P_to_utf8),
-		                                generated_function.size);
+		                                java_Cp870_1_3_P_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };

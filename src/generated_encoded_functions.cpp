@@ -11,7 +11,6 @@ void GeneratedEncodedFunction::Decode(CSVEncoderBuffer &encoded_buffer, char *ta
                                       EncodingFunction *encoding_function) {
 	const auto encoded_buffer_ptr = encoded_buffer.Ptr();
 	const int lookup_bytes = static_cast<int>(encoding_function->GetLookupBytes());
-	const auto conversion_map = reinterpret_cast<map_entry_encoding *>(encoding_function->conversion_map);
 	while (encoded_buffer.cur_pos < encoded_buffer.actual_encoded_buffer_size) {
 		// We need to use our map from the highest to lowest lookup bytes
 		if (encoded_buffer.actual_encoded_buffer_size - encoded_buffer.cur_pos < lookup_bytes &&
@@ -26,7 +25,7 @@ void GeneratedEncodedFunction::Decode(CSVEncoderBuffer &encoded_buffer, char *ta
 		bool did_replacement = false;
 		for (; byte_group > 0; --byte_group) {
 			// We found a match, do the conversion
-			const auto it = FindEntry(conversion_map, encoding_function->map_size,
+			const auto it = FindEntry(encoding_function->conversion_map, encoding_function->map_size,
 			                          &encoded_buffer_ptr[encoded_buffer.cur_pos], byte_group);
 			if (it != nullptr) {
 				// We walk the byte group size from our buffer source

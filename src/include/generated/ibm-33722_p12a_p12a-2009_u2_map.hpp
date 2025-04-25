@@ -32,8 +32,7 @@ public:
 		const Ibm_33722_p12a_p12a_2009_u2ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
 		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                reinterpret_cast<uintptr_t>(&ibm_33722_P12A_P12A_2009_U2_to_utf8),
-		                                generated_function.size);
+		                                ibm_33722_P12A_P12A_2009_U2_to_utf8, generated_function.size);
 		config.RegisterEncodeFunction(function);
 	}
 };
