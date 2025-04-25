@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "windows-51932-2006";
 	const idx_t size = 13372;
-	DUCKDB_API static const map_entry windows_51932_2006_to_utf8[];
+	static const map_entry windows_51932_2006_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Windows_51932_2006ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

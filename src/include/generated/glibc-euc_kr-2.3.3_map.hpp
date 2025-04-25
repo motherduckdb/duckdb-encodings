@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "glibc-EUC_KR-2.3.3";
 	const idx_t size = 8386;
-	DUCKDB_API static const map_entry glibc_EUC_KR_2_3_3_to_utf8[];
+	static const map_entry glibc_EUC_KR_2_3_3_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Glibc_euc_kr_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

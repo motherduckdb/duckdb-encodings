@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "iso86";
 	const idx_t size = 211;
-	DUCKDB_API static const map_entry iso86_to_utf8[];
+	static const map_entry iso86_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Iso86ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

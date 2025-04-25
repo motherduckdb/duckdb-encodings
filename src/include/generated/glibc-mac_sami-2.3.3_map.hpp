@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "glibc-MAC_SAMI-2.3.3";
 	const idx_t size = 256;
-	DUCKDB_API static const map_entry glibc_MAC_SAMI_2_3_3_to_utf8[];
+	static const map_entry glibc_MAC_SAMI_2_3_3_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Glibc_mac_sami_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

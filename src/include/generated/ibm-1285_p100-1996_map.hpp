@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "ibm-1285_P100-1996";
 	const idx_t size = 256;
-	DUCKDB_API static const map_entry ibm_1285_P100_1996_to_utf8[];
+	static const map_entry ibm_1285_P100_1996_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ibm_1285_p100_1996ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "EUC_KR";
 	const idx_t size = 8352;
-	DUCKDB_API static const map_entry EUC_KR_to_utf8[];
+	static const map_entry EUC_KR_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Euc_krToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

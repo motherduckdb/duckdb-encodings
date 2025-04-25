@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "MAC_IS";
 	const idx_t size = 254;
-	DUCKDB_API static const map_entry MAC_IS_to_utf8[];
+	static const map_entry MAC_IS_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Mac_isToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

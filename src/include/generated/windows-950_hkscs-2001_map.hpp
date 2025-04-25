@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "windows-950_hkscs-2001";
 	const idx_t size = 19850;
-	DUCKDB_API static const map_entry windows_950_hkscs_2001_to_utf8[];
+	static const map_entry windows_950_hkscs_2001_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Windows_950_hkscs_2001ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

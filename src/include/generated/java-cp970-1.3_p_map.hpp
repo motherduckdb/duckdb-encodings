@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "java-Cp970-1.3_P";
 	const idx_t size = 8570;
-	DUCKDB_API static const map_entry java_Cp970_1_3_P_to_utf8[];
+	static const map_entry java_Cp970_1_3_P_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Java_cp970_1_3_pToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

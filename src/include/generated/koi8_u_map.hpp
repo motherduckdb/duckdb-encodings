@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "KOI8_U";
 	const idx_t size = 256;
-	DUCKDB_API static const map_entry KOI8_U_to_utf8[];
+	static const map_entry KOI8_U_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Koi8_uToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "hpux-roc15-11.11";
 	const idx_t size = 12487;
-	DUCKDB_API static const map_entry hpux_roc15_11_11_to_utf8[];
+	static const map_entry hpux_roc15_11_11_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Hpux_roc15_11_11ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

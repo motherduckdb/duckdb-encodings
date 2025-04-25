@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "java-ISO2022JP-1.3_P";
 	const idx_t size = 6913;
-	DUCKDB_API static const map_entry java_ISO2022JP_1_3_P_to_utf8[];
+	static const map_entry java_ISO2022JP_1_3_P_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Java_iso2022jp_1_3_pToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
