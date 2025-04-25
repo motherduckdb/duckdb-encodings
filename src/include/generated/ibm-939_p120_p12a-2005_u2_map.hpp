@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "ibm-939_P120_P12A-2005_U2";
 	const idx_t size = 11861;
-	static const map_entry ibm_939_P120_P12A_2005_U2_to_utf8[];
+	static const map_entry_encoding ibm_939_P120_P12A_2005_U2_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ibm_939_p120_p12a_2005_u2ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

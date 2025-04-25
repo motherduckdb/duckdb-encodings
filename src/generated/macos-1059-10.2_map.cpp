@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: macos-1059-10.2.ucm
-const map_entry Macos_1059_10_2ToUtf::macos_1059_10_2_to_utf8[] = {
+const map_entry_encoding Macos_1059_10_2ToUtf::macos_1059_10_2_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

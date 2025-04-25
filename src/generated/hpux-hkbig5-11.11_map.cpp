@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: hpux-hkbig5-11.11.ucm
-const map_entry Hpux_hkbig5_11_11ToUtf::hpux_hkbig5_11_11_to_utf8[] = {
+const map_entry_encoding Hpux_hkbig5_11_11ToUtf::hpux_hkbig5_11_11_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: osd-EBCDIC-DF03-IRV.ucm
-const map_entry Osd_ebcdic_df03_irvToUtf::osd_EBCDIC_DF03_IRV_to_utf8[] = {
+const map_entry_encoding Osd_ebcdic_df03_irvToUtf::osd_EBCDIC_DF03_IRV_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},         {1, "\x03", 1, "\x03"},
     {1, "\x05", 1, "\x09"},     {1, "\x07", 1, "\x7F"},     {1, "\x0B", 1, "\x0B"},         {1, "\x0C", 1, "\x0C"},
     {1, "\x0D", 1, "\x0D"},     {1, "\x0E", 1, "\x0E"},     {1, "\x0F", 1, "\x0F"},         {1, "\x10", 1, "\x10"},

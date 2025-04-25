@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "BALTIC";
 	const idx_t size = 256;
-	static const map_entry BALTIC_to_utf8[];
+	static const map_entry_encoding BALTIC_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const BalticToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

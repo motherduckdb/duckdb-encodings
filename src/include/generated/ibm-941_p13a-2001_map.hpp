@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "ibm-941_P13A-2001";
 	const idx_t size = 9604;
-	static const map_entry ibm_941_P13A_2001_to_utf8[];
+	static const map_entry_encoding ibm_941_P13A_2001_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ibm_941_p13a_2001ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

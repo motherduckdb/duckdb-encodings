@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 1;
 	const string name = "IBM891";
 	const idx_t size = 128;
-	static const map_entry IBM891_to_utf8[];
+	static const map_entry_encoding IBM891_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ibm891ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

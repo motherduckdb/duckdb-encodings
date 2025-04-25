@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "shift_jis";
 	const idx_t size = 7069;
-	static const map_entry shift_jis_to_utf8[];
+	static const map_entry_encoding shift_jis_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Shift_jisToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

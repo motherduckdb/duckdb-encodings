@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: euc-jp-2007.ucm
-const map_entry Euc_jp_2007ToUtf::euc_jp_2007_to_utf8[] = {
+const map_entry_encoding Euc_jp_2007ToUtf::euc_jp_2007_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

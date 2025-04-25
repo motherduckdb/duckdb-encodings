@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-zh_CN_cp935-2.7.ucm
-const map_entry Zh_cn_cp935ToUtf::zh_CN_cp935_to_utf8[] = {
+const map_entry_encoding Zh_cn_cp935ToUtf::zh_CN_cp935_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {2, "\x00\x04", 2, "\xC2\x9C"},
     {2, "\x00\x06", 2, "\xC2\x86"},

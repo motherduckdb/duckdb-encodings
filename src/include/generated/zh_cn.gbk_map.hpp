@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "zh_CN.gbk";
 	const idx_t size = 24067;
-	static const map_entry zh_CN_gbk_to_utf8[];
+	static const map_entry_encoding zh_CN_gbk_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Zh_cn_gbkToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

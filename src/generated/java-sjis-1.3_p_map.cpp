@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: java-SJIS-1.3_P.ucm
-const map_entry Java_sjis_1_3_pToUtf::java_SJIS_1_3_P_to_utf8[] = {
+const map_entry_encoding Java_sjis_1_3_pToUtf::java_SJIS_1_3_P_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

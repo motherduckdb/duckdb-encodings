@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "mac_roman";
 	const idx_t size = 254;
-	static const map_entry mac_roman_to_utf8[];
+	static const map_entry_encoding mac_roman_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Mac_romanToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

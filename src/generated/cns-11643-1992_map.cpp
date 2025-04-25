@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: cns-11643-1992.ucm
-const map_entry Cns_11643_1992ToUtf::CNS_11643_1992_to_utf8[] = {
+const map_entry_encoding Cns_11643_1992ToUtf::CNS_11643_1992_to_utf8[] = {
     {3, "\x81\x21\x21", 1, "\x20"},
     {3, "\x81\x21\x22", 1, "\x2C"},
     {3, "\x81\x21\x23", 3, "\xE3\x80\x81"},

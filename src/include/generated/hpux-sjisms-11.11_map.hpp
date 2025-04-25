@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "hpux-sjisMS-11.11";
 	const idx_t size = 7070;
-	static const map_entry hpux_sjisMS_11_11_to_utf8[];
+	static const map_entry_encoding hpux_sjisMS_11_11_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Hpux_sjisms_11_11ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

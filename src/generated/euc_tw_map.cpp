@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-EUC_TW-2.1.2.ucm
-const map_entry Euc_twToUtf::EUC_TW_to_utf8[] = {
+const map_entry_encoding Euc_twToUtf::EUC_TW_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "glibc-KOI8_R-2.3.3";
 	const idx_t size = 256;
-	static const map_entry glibc_KOI8_R_2_3_3_to_utf8[];
+	static const map_entry_encoding glibc_KOI8_R_2_3_3_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Glibc_koi8_r_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

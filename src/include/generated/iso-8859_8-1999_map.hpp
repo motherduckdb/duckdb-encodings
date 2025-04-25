@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "iso-8859_8-1999";
 	const idx_t size = 220;
-	static const map_entry iso_8859_8_1999_to_utf8[];
+	static const map_entry_encoding iso_8859_8_1999_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Iso_8859_8_1999ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "glibc-IBM866NAV-2.3.3";
 	const idx_t size = 256;
-	static const map_entry glibc_IBM866NAV_2_3_3_to_utf8[];
+	static const map_entry_encoding glibc_IBM866NAV_2_3_3_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Glibc_ibm866nav_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-JISX0201.1976_GR-4.3.6.ucm
-const map_entry Jisx0201_1976_grToUtf::JISX0201_1976_GR_to_utf8[] = {
+const map_entry_encoding Jisx0201_1976_grToUtf::JISX0201_1976_GR_to_utf8[] = {
     {1, "\x20", 1, "\x20"},         {1, "\x21", 1, "\x21"},         {1, "\x22", 1, "\x22"},
     {1, "\x23", 1, "\x23"},         {1, "\x24", 1, "\x24"},         {1, "\x25", 1, "\x25"},
     {1, "\x26", 1, "\x26"},         {1, "\x27", 1, "\x27"},         {1, "\x28", 1, "\x28"},

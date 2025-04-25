@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "DEC_MCS";
 	const idx_t size = 241;
-	static const map_entry DEC_MCS_to_utf8[];
+	static const map_entry_encoding DEC_MCS_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Dec_mcsToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-IBM891-2.1.2.ucm
-const map_entry Ibm891ToUtf::IBM891_to_utf8[] = {
+const map_entry_encoding Ibm891ToUtf::IBM891_to_utf8[] = {
     {1, "\x00", 1, "\x00"}, {1, "\x01", 1, "\x01"}, {1, "\x02", 1, "\x02"}, {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"}, {1, "\x05", 1, "\x05"}, {1, "\x06", 1, "\x06"}, {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"}, {1, "\x09", 1, "\x09"}, {1, "\x0A", 1, "\x0A"}, {1, "\x0B", 1, "\x0B"},

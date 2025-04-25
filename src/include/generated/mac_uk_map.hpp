@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "MAC_UK";
 	const idx_t size = 256;
-	static const map_entry MAC_UK_to_utf8[];
+	static const map_entry_encoding MAC_UK_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Mac_ukToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

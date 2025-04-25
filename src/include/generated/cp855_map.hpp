@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "cp855";
 	const idx_t size = 256;
-	static const map_entry cp855_to_utf8[];
+	static const map_entry_encoding cp855_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Cp855ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "java-Cp875-1.3_P";
 	const idx_t size = 248;
-	static const map_entry java_Cp875_1_3_P_to_utf8[];
+	static const map_entry_encoding java_Cp875_1_3_P_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Java_cp875_1_3_pToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

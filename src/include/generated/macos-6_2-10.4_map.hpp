@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "macos-6_2-10.4";
 	const idx_t size = 256;
-	static const map_entry macos_6_2_10_4_to_utf8[];
+	static const map_entry_encoding macos_6_2_10_4_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Macos_6_2_10_4ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

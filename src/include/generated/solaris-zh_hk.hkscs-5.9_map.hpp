@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "solaris-zh_HK.hkscs-5.9";
 	const idx_t size = 18284;
-	static const map_entry solaris_zh_HK_hkscs_5_9_to_utf8[];
+	static const map_entry_encoding solaris_zh_HK_hkscs_5_9_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Solaris_zh_hk_hkscs_5_9ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

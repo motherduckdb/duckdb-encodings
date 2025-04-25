@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: windows-1258_db-2013.ucm
-const map_entry Windows_1258_db_2013ToUtf::windows_1258_db_2013_to_utf8[] = {
+const map_entry_encoding Windows_1258_db_2013ToUtf::windows_1258_db_2013_to_utf8[] = {
     {2, "\x41\xD2", 3, "\xE1\xBA\xA2"}, {2, "\x41\xDE", 2, "\xC3\x83"},     {2, "\x41\xF2", 3, "\xE1\xBA\xA0"},
     {2, "\x45\xD2", 3, "\xE1\xBA\xBA"}, {2, "\x45\xDE", 3, "\xE1\xBA\xBC"}, {2, "\x45\xF2", 3, "\xE1\xBA\xB8"},
     {2, "\x49\xCC", 2, "\xC3\x8C"},     {2, "\x49\xD2", 3, "\xE1\xBB\x88"}, {2, "\x49\xDE", 2, "\xC4\xA8"},

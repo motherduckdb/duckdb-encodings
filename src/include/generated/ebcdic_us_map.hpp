@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "EBCDIC_US";
 	const idx_t size = 160;
-	static const map_entry EBCDIC_US_to_utf8[];
+	static const map_entry_encoding EBCDIC_US_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ebcdic_usToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

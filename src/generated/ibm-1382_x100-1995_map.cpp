@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-1382_X100-1995.ucm
-const map_entry Ibm_1382_x100_1995ToUtf::ibm_1382_X100_1995_to_utf8[] = {
+const map_entry_encoding Ibm_1382_x100_1995ToUtf::ibm_1382_X100_1995_to_utf8[] = {
     {2, "\xA1\xA1", 3, "\xE3\x80\x80"}, {2, "\xA1\xA2", 3, "\xE3\x80\x81"}, {2, "\xA1\xA3", 3, "\xE3\x80\x82"},
     {2, "\xA1\xA4", 3, "\xE3\x83\xBB"}, {2, "\xA1\xA5", 2, "\xCB\x89"},     {2, "\xA1\xA6", 2, "\xCB\x87"},
     {2, "\xA1\xA7", 2, "\xC2\xA8"},     {2, "\xA1\xA8", 3, "\xE3\x80\x83"}, {2, "\xA1\xA9", 3, "\xE3\x80\x85"},

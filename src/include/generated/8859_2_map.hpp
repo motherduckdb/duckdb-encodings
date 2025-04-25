@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "8859_2";
 	const idx_t size = 256;
-	static const map_entry _8859_2_to_utf8[];
+	static const map_entry_encoding _8859_2_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const _8859_2ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

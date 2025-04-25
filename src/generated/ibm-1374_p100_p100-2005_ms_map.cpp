@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-1374_P100_P100-2005_MS.ucm
-const map_entry Ibm_1374_p100_p100_2005_msToUtf::ibm_1374_P100_P100_2005_MS_to_utf8[] = {
+const map_entry_encoding Ibm_1374_p100_p100_2005_msToUtf::ibm_1374_P100_P100_2005_MS_to_utf8[] = {
     {2, "\x88\x40", 3, "\xEF\x8C\x83"}, {2, "\x88\x41", 3, "\xEF\x8C\x84"}, {2, "\x88\x42", 3, "\xEF\x8C\x85"},
     {2, "\x88\x43", 3, "\xEF\x8C\x86"}, {2, "\x88\x44", 3, "\xEF\x8C\x87"}, {2, "\x88\x45", 3, "\xEF\x8C\x88"},
     {2, "\x88\x46", 3, "\xEF\x8C\x89"}, {2, "\x88\x47", 3, "\xEF\x8C\x8A"}, {2, "\x88\x48", 3, "\xEF\x8C\x8B"},

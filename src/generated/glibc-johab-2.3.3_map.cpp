@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-JOHAB-2.3.3.ucm
-const map_entry Glibc_johab_2_3_3ToUtf::glibc_JOHAB_2_3_3_to_utf8[] = {
+const map_entry_encoding Glibc_johab_2_3_3ToUtf::glibc_JOHAB_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "CNS11643.1986_1";
 	const idx_t size = 5916;
-	static const map_entry CNS11643_1986_1_to_utf8[];
+	static const map_entry_encoding CNS11643_1986_1_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Cns11643_1986_1ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

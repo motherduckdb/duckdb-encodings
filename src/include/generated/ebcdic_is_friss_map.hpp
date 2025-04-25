@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "EBCDIC_IS_FRISS";
 	const idx_t size = 145;
-	static const map_entry EBCDIC_IS_FRISS_to_utf8[];
+	static const map_entry_encoding EBCDIC_IS_FRISS_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ebcdic_is_frissToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

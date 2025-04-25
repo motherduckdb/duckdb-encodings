@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "glibc-ANSI_X3.110-2.3.3";
 	const idx_t size = 401;
-	static const map_entry glibc_ANSI_X3_110_2_3_3_to_utf8[];
+	static const map_entry_encoding glibc_ANSI_X3_110_2_3_3_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Glibc_ansi_x3_110_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-JIS_C6220_1969_RO-2.3.3.ucm
-const map_entry Glibc_jis_c6220_1969_ro_2_3_3ToUtf::glibc_JIS_C6220_1969_RO_2_3_3_to_utf8[] = {
+const map_entry_encoding Glibc_jis_c6220_1969_ro_2_3_3ToUtf::glibc_JIS_C6220_1969_RO_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"}, {1, "\x02", 1, "\x02"},         {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"}, {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"}, {1, "\x0A", 1, "\x0A"},         {1, "\x0B", 1, "\x0B"},

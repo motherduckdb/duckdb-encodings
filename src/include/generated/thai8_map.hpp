@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "thai8";
 	const idx_t size = 248;
-	static const map_entry thai8_to_utf8[];
+	static const map_entry_encoding thai8_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Thai8ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

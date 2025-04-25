@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "glibc-JUS_I.B1.002-2.3.3";
 	const idx_t size = 128;
-	static const map_entry glibc_JUS_I_B1_002_2_3_3_to_utf8[];
+	static const map_entry_encoding glibc_JUS_I_B1_002_2_3_3_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Glibc_jus_i_b1_002_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

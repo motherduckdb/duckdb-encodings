@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "zh_TW_euc";
 	const idx_t size = 17839;
-	static const map_entry zh_TW_euc_to_utf8[];
+	static const map_entry_encoding zh_TW_euc_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Zh_tw_eucToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "GREEK7_OLD";
 	const idx_t size = 127;
-	static const map_entry GREEK7_OLD_to_utf8[];
+	static const map_entry_encoding GREEK7_OLD_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Greek7_oldToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

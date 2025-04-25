@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "LATIN_GREEK";
 	const idx_t size = 127;
-	static const map_entry LATIN_GREEK_to_utf8[];
+	static const map_entry_encoding LATIN_GREEK_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Latin_greekToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-VISCII-2.3.3.ucm
-const map_entry Glibc_viscii_2_3_3ToUtf::glibc_VISCII_2_3_3_to_utf8[] = {
+const map_entry_encoding Glibc_viscii_2_3_3ToUtf::glibc_VISCII_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 3, "\xE1\xBA\xB2"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 3, "\xE1\xBA\xB4"},
     {1, "\x06", 3, "\xE1\xBA\xAA"}, {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-EUC_JP_MS-2.3.3.ucm
-const map_entry Glibc_euc_jp_ms_2_3_3ToUtf::glibc_EUC_JP_MS_2_3_3_to_utf8[] = {
+const map_entry_encoding Glibc_euc_jp_ms_2_3_3ToUtf::glibc_EUC_JP_MS_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},

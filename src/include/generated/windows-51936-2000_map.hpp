@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "windows-51936-2000";
 	const idx_t size = 24070;
-	static const map_entry windows_51936_2000_to_utf8[];
+	static const map_entry_encoding windows_51936_2000_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Windows_51936_2000ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

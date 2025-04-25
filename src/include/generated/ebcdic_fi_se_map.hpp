@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "EBCDIC_FI_SE";
 	const idx_t size = 160;
-	static const map_entry EBCDIC_FI_SE_to_utf8[];
+	static const map_entry_encoding EBCDIC_FI_SE_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Ebcdic_fi_seToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

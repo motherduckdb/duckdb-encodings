@@ -27,7 +27,7 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "glibc-ISIRI_3342-2.3.3";
 	const idx_t size = 200;
-	static const map_entry glibc_ISIRI_3342_2_3_3_to_utf8[];
+	static const map_entry_encoding glibc_ISIRI_3342_2_3_3_to_utf8[];
 	static void Register(const DBConfig &config) {
 		const Glibc_isiri_3342_2_3_3ToUtf generated_function;
 		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,

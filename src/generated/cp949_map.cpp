@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-UHC-2.1.2.ucm
-const map_entry Cp949ToUtf::cp949_to_utf8[] = {
+const map_entry_encoding Cp949ToUtf::cp949_to_utf8[] = {
     {2, "\x81\x41", 3, "\xEA\xB0\x82"}, {2, "\x81\x42", 3, "\xEA\xB0\x83"}, {2, "\x81\x43", 3, "\xEA\xB0\x85"},
     {2, "\x81\x44", 3, "\xEA\xB0\x86"}, {2, "\x81\x45", 3, "\xEA\xB0\x8B"}, {2, "\x81\x46", 3, "\xEA\xB0\x8C"},
     {2, "\x81\x47", 3, "\xEA\xB0\x8D"}, {2, "\x81\x48", 3, "\xEA\xB0\x8E"}, {2, "\x81\x49", 3, "\xEA\xB0\x8F"},
