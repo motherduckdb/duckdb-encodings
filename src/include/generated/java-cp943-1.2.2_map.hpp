@@ -27,14 +27,8 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "java-Cp943-1.2.2";
 	const idx_t size = 9590;
-	static const map_entry_encoding java_Cp943_1_2_2_to_utf8[];
-	static void Register(const DBConfig &config) {
-		const Java_cp943_1_2_2ToUtf generated_function;
-		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                java_Cp943_1_2_2_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(function);
-	}
+
+	static void Register(const DBConfig &config);
 };
 } // namespace duckdb_encodings
 } // namespace duckdb

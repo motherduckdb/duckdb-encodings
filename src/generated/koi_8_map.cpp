@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-KOI_8-2.1.2.ucm
-const map_entry_encoding Koi_8ToUtf::KOI_8_to_utf8[] = {
+static const map_entry_encoding KOI_8_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -54,5 +54,12 @@ const map_entry_encoding Koi_8ToUtf::KOI_8_to_utf8[] = {
     {1, "\xF8", 2, "\xD0\xAC"}, {1, "\xF9", 2, "\xD0\xAB"}, {1, "\xFA", 2, "\xD0\x97"}, {1, "\xFB", 2, "\xD0\xA8"},
     {1, "\xFC", 2, "\xD0\xAD"}, {1, "\xFD", 2, "\xD0\xA9"}, {1, "\xFE", 2, "\xD0\xA7"},
 };
+void Koi_8ToUtf::Register(const DBConfig &config) {
+	const Koi_8ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                KOI_8_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

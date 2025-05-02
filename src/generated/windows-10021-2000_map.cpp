@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: windows-10021-2000.ucm
-const map_entry_encoding Windows_10021_2000ToUtf::windows_10021_2000_to_utf8[] = {
+static const map_entry_encoding windows_10021_2000_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -82,5 +82,12 @@ const map_entry_encoding Windows_10021_2000ToUtf::windows_10021_2000_to_utf8[] =
     {1, "\xF7", 3, "\xE0\xB9\x97"}, {1, "\xF8", 3, "\xE0\xB9\x98"}, {1, "\xF9", 3, "\xE0\xB9\x99"},
     {1, "\xFA", 2, "\xC2\xAE"},     {1, "\xFB", 2, "\xC2\xA9"},
 };
+void Windows_10021_2000ToUtf::Register(const DBConfig &config) {
+	const Windows_10021_2000ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                windows_10021_2000_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -27,14 +27,8 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "EUC_TW";
 	const idx_t size = 17795;
-	static const map_entry_encoding EUC_TW_to_utf8[];
-	static void Register(const DBConfig &config) {
-		const Euc_twToUtf generated_function;
-		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                EUC_TW_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(function);
-	}
+
+	static void Register(const DBConfig &config);
 };
 } // namespace duckdb_encodings
 } // namespace duckdb

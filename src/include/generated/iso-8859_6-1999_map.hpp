@@ -27,14 +27,8 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "iso-8859_6-1999";
 	const idx_t size = 211;
-	static const map_entry_encoding iso_8859_6_1999_to_utf8[];
-	static void Register(const DBConfig &config) {
-		const Iso_8859_6_1999ToUtf generated_function;
-		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                iso_8859_6_1999_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(function);
-	}
+
+	static void Register(const DBConfig &config);
 };
 } // namespace duckdb_encodings
 } // namespace duckdb

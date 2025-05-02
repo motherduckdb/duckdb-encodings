@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-1373_P100-2002.ucm
-const map_entry_encoding Ibm_1373_p100_2002ToUtf::ibm_1373_P100_2002_to_utf8[] = {
+static const map_entry_encoding ibm_1373_P100_2002_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -19854,5 +19854,12 @@ const map_entry_encoding Ibm_1373_p100_2002ToUtf::ibm_1373_P100_2002_to_utf8[] =
     {2, "\xFE\xFD", 3, "\xEE\x8C\x8F"},
     {2, "\xFE\xFE", 3, "\xEE\x8C\x90"},
 };
+void Ibm_1373_p100_2002ToUtf::Register(const DBConfig &config) {
+	const Ibm_1373_p100_2002ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                ibm_1373_P100_2002_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

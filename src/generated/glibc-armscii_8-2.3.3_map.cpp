@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-ARMSCII_8-2.3.3.ucm
-const map_entry_encoding Glibc_armscii_8_2_3_3ToUtf::glibc_ARMSCII_8_2_3_3_to_utf8[] = {
+static const map_entry_encoding glibc_ARMSCII_8_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},     {1, "\x08", 1, "\x08"},
@@ -89,5 +89,12 @@ const map_entry_encoding Glibc_armscii_8_2_3_3ToUtf::glibc_ARMSCII_8_2_3_3_to_ut
     {1, "\xF9", 2, "\xD6\x84"},     {1, "\xFA", 2, "\xD5\x95"}, {1, "\xFB", 2, "\xD6\x85"},
     {1, "\xFC", 2, "\xD5\x96"},     {1, "\xFD", 2, "\xD6\x86"}, {1, "\xFE", 2, "\xD5\x9A"},
 };
+void Glibc_armscii_8_2_3_3ToUtf::Register(const DBConfig &config) {
+	const Glibc_armscii_8_2_3_3ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                glibc_ARMSCII_8_2_3_3_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

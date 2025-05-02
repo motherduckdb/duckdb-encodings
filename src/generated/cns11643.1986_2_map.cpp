@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-CNS11643.1986_2-4.3.6.ucm
-const map_entry_encoding Cns11643_1986_2ToUtf::CNS11643_1986_2_to_utf8[] = {
+static const map_entry_encoding CNS11643_1986_2_to_utf8[] = {
     {2, "\x21\x21", 3, "\xE4\xB9\x82"}, {2, "\x21\x22", 3, "\xE4\xB9\x9C"}, {2, "\x21\x23", 3, "\xE5\x87\xB5"},
     {2, "\x21\x24", 3, "\xE5\x8C\x9A"}, {2, "\x21\x25", 3, "\xE5\x8E\x82"}, {2, "\x21\x26", 3, "\xE4\xB8\x87"},
     {2, "\x21\x27", 3, "\xE4\xB8\x8C"}, {2, "\x21\x28", 3, "\xE4\xB9\x87"}, {2, "\x21\x29", 3, "\xE4\xBA\x8D"},
@@ -2556,5 +2556,12 @@ const map_entry_encoding Cns11643_1986_2ToUtf::CNS11643_1986_2_to_utf8[] = {
     {2, "\x72\x3F", 3, "\xE7\x81\xAA"}, {2, "\x72\x40", 3, "\xE7\x88\xA9"}, {2, "\x72\x41", 3, "\xE9\xBA\xA4"},
     {2, "\x72\x42", 3, "\xE9\xBD\xBE"}, {2, "\x72\x43", 3, "\xE9\xBD\x89"}, {2, "\x72\x44", 3, "\xE9\xBE\x98"},
 };
+void Cns11643_1986_2ToUtf::Register(const DBConfig &config) {
+	const Cns11643_1986_2ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                CNS11643_1986_2_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

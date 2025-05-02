@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-eucTH-2.7.ucm
-const map_entry_encoding EucthToUtf::eucTH_to_utf8[] = {
+static const map_entry_encoding eucTH_to_utf8[] = {
     {1, "\x00", 3, "\xEF\xA2\xBD"}, {1, "\x01", 3, "\xEF\xA2\xBE"}, {1, "\x02", 3, "\xEF\xA2\xBF"},
     {1, "\x03", 3, "\xEF\xA3\x80"}, {1, "\x04", 3, "\xEF\xA3\x81"}, {1, "\x05", 3, "\xEF\xA3\x82"},
     {1, "\x06", 3, "\xEF\xA3\x83"}, {1, "\x07", 3, "\xEF\xA3\x84"}, {1, "\x08", 3, "\xEF\xA3\x85"},
@@ -92,5 +92,12 @@ const map_entry_encoding EucthToUtf::eucTH_to_utf8[] = {
     {1, "\xFC", 3, "\xEF\xA2\xB9"}, {1, "\xFD", 3, "\xEF\xA2\xBA"}, {1, "\xFE", 3, "\xEF\xA2\xBB"},
     {1, "\xFF", 3, "\xEF\xA2\xBC"},
 };
+void EucthToUtf::Register(const DBConfig &config) {
+	const EucthToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                eucTH_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

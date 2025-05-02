@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-zh_CN_cp935-2.7.ucm
-const map_entry_encoding Zh_cn_cp935ToUtf::zh_CN_cp935_to_utf8[] = {
+static const map_entry_encoding zh_CN_cp935_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {2, "\x00\x04", 2, "\xC2\x9C"},
     {2, "\x00\x06", 2, "\xC2\x86"},
@@ -9528,5 +9528,12 @@ const map_entry_encoding Zh_cn_cp935ToUtf::zh_CN_cp935_to_utf8[] = {
     {2, "\x7F\xFC", 3, "\xEE\x9D\x96"},
     {2, "\x7F\xFD", 3, "\xEE\x9D\x97"},
 };
+void Zh_cn_cp935ToUtf::Register(const DBConfig &config) {
+	const Zh_cn_cp935ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                zh_CN_cp935_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

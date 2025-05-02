@@ -27,14 +27,8 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "ibm-932_P12A-1999";
 	const idx_t size = 9341;
-	static const map_entry_encoding ibm_932_P12A_1999_to_utf8[];
-	static void Register(const DBConfig &config) {
-		const Ibm_932_p12a_1999ToUtf generated_function;
-		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                ibm_932_P12A_1999_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(function);
-	}
+
+	static void Register(const DBConfig &config);
 };
 } // namespace duckdb_encodings
 } // namespace duckdb

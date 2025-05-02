@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: macos-1283-10.2.ucm
-const map_entry_encoding Macos_1283_10_2ToUtf::macos_1283_10_2_to_utf8[] = {
+static const map_entry_encoding macos_1283_10_2_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -86,5 +86,12 @@ const map_entry_encoding Macos_1283_10_2ToUtf::macos_1283_10_2_to_utf8[] = {
     {1, "\xFA", 2, "\xCF\x8A"},     {1, "\xFB", 2, "\xCF\x8B"},     {1, "\xFC", 2, "\xCF\x8C"},
     {1, "\xFD", 2, "\xCF\x8D"},     {1, "\xFE", 2, "\xCF\x8E"},
 };
+void Macos_1283_10_2ToUtf::Register(const DBConfig &config) {
+	const Macos_1283_10_2ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                macos_1283_10_2_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

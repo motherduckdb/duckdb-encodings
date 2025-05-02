@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: hpux-iso86-11.0.ucm
-const map_entry_encoding Iso86ToUtf::iso86_to_utf8[] = {
+static const map_entry_encoding iso86_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -59,5 +59,12 @@ const map_entry_encoding Iso86ToUtf::iso86_to_utf8[] = {
     {1, "\xEC", 2, "\xD9\x8C"}, {1, "\xED", 2, "\xD9\x8D"}, {1, "\xEE", 2, "\xD9\x8E"}, {1, "\xEF", 2, "\xD9\x8F"},
     {1, "\xF0", 2, "\xD9\x90"}, {1, "\xF1", 2, "\xD9\x91"}, {1, "\xF2", 2, "\xD9\x92"},
 };
+void Iso86ToUtf::Register(const DBConfig &config) {
+	const Iso86ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                iso86_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

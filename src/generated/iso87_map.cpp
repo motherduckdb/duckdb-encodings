@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: hpux-iso87-11.0.ucm
-const map_entry_encoding Iso87ToUtf::iso87_to_utf8[] = {
+static const map_entry_encoding iso87_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -69,5 +69,12 @@ const map_entry_encoding Iso87ToUtf::iso87_to_utf8[] = {
     {1, "\xF9", 2, "\xCF\x89"}, {1, "\xFA", 2, "\xCF\x8A"}, {1, "\xFB", 2, "\xCF\x8B"}, {1, "\xFC", 2, "\xCF\x8C"},
     {1, "\xFD", 2, "\xCF\x8D"}, {1, "\xFE", 2, "\xCF\x8E"},
 };
+void Iso87ToUtf::Register(const DBConfig &config) {
+	const Iso87ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                iso87_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

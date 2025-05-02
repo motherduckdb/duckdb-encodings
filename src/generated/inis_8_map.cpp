@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-INIS_8-2.1.2.ucm
-const map_entry_encoding Inis_8ToUtf::INIS_8_to_utf8[] = {
+static const map_entry_encoding INIS_8_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -30,5 +30,12 @@ const map_entry_encoding Inis_8ToUtf::INIS_8_to_utf8[] = {
     {1, "\x7A", 2, "\xCE\xA3"},     {1, "\x7B", 2, "\xCE\xBC"},     {1, "\x7C", 2, "\xCE\xBD"},
     {1, "\x7D", 2, "\xCF\x89"},     {1, "\x7E", 2, "\xCF\x80"},     {1, "\x7F", 1, "\x7F"},
 };
+void Inis_8ToUtf::Register(const DBConfig &config) {
+	const Inis_8ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                INIS_8_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

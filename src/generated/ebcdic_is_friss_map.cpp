@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-EBCDIC_IS_FRISS-2.1.2.ucm
-const map_entry_encoding Ebcdic_is_frissToUtf::EBCDIC_IS_FRISS_to_utf8[] = {
+static const map_entry_encoding EBCDIC_IS_FRISS_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},         {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},         {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -43,5 +43,12 @@ const map_entry_encoding Ebcdic_is_frissToUtf::EBCDIC_IS_FRISS_to_utf8[] = {
     {1, "\xF7", 1, "\x37"},     {1, "\xF8", 1, "\x38"},         {1, "\xF9", 1, "\x39"},     {1, "\xFE", 2, "\xC3\x9A"},
     {1, "\xFF", 1, "\x7F"},
 };
+void Ebcdic_is_frissToUtf::Register(const DBConfig &config) {
+	const Ebcdic_is_frissToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                EBCDIC_IS_FRISS_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

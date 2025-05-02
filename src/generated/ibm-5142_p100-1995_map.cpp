@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-5142_P100-1995.ucm
-const map_entry_encoding Ibm_5142_p100_1995ToUtf::ibm_5142_P100_1995_to_utf8[] = {
+static const map_entry_encoding ibm_5142_P100_1995_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -77,5 +77,12 @@ const map_entry_encoding Ibm_5142_p100_1995ToUtf::ibm_5142_P100_1995_to_utf8[] =
     {1, "\xEF", 3, "\xEF\xB9\xB8"}, {1, "\xF0", 3, "\xEF\xB9\xBA"}, {1, "\xF1", 3, "\xEF\xB9\xBC"},
     {1, "\xF2", 3, "\xEF\xB9\xBE"},
 };
+void Ibm_5142_p100_1995ToUtf::Register(const DBConfig &config) {
+	const Ibm_5142_p100_1995ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                ibm_5142_P100_1995_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

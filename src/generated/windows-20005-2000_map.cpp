@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: windows-20005-2000.ucm
-const map_entry_encoding Windows_20005_2000ToUtf::windows_20005_2000_to_utf8[] = {
+static const map_entry_encoding windows_20005_2000_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -18588,5 +18588,12 @@ const map_entry_encoding Windows_20005_2000ToUtf::windows_20005_2000_to_utf8[] =
     {1, "\xFE", 3, "\xEF\xA2\x80"},
     {1, "\xFF", 3, "\xEF\xA2\x81"},
 };
+void Windows_20005_2000ToUtf::Register(const DBConfig &config) {
+	const Windows_20005_2000ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                windows_20005_2000_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

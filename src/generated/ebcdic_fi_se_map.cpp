@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-EBCDIC_FI_SE-2.1.2.ucm
-const map_entry_encoding Ebcdic_fi_seToUtf::EBCDIC_FI_SE_to_utf8[] = {
+static const map_entry_encoding EBCDIC_FI_SE_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 2, "\xC2\x9C"}, {1, "\x05", 1, "\x09"},     {1, "\x06", 2, "\xC2\x86"}, {1, "\x07", 1, "\x7F"},
     {1, "\x08", 2, "\xC2\x97"}, {1, "\x09", 2, "\xC2\x8D"}, {1, "\x0A", 2, "\xC2\x8E"}, {1, "\x0B", 1, "\x0B"},
@@ -46,5 +46,12 @@ const map_entry_encoding Ebcdic_fi_seToUtf::EBCDIC_FI_SE_to_utf8[] = {
     {1, "\xF3", 1, "\x33"},     {1, "\xF4", 1, "\x34"},     {1, "\xF5", 1, "\x35"},     {1, "\xF6", 1, "\x36"},
     {1, "\xF7", 1, "\x37"},     {1, "\xF8", 1, "\x38"},     {1, "\xF9", 1, "\x39"},     {1, "\xFF", 2, "\xC2\x9F"},
 };
+void Ebcdic_fi_seToUtf::Register(const DBConfig &config) {
+	const Ebcdic_fi_seToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                EBCDIC_FI_SE_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

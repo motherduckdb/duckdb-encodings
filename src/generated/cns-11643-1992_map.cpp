@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: cns-11643-1992.ucm
-const map_entry_encoding Cns_11643_1992ToUtf::CNS_11643_1992_to_utf8[] = {
+static const map_entry_encoding CNS_11643_1992_to_utf8[] = {
     {3, "\x81\x21\x21", 1, "\x20"},
     {3, "\x81\x21\x22", 1, "\x2C"},
     {3, "\x81\x21\x23", 3, "\xE3\x80\x81"},
@@ -48241,5 +48241,12 @@ const map_entry_encoding Cns_11643_1992ToUtf::CNS_11643_1992_to_utf8[] = {
     {3, "\x87\x66\x54", 4, "\xF0\xA7\xA2\xB1"},
     {3, "\x87\x66\x55", 4, "\xF0\xA9\x99\xA4"},
 };
+void Cns_11643_1992ToUtf::Register(const DBConfig &config) {
+	const Cns_11643_1992ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                CNS_11643_1992_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

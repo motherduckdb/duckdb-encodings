@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: euc-tw-2014.ucm
-const map_entry_encoding Euc_tw_2014ToUtf::euc_tw_2014_to_utf8[] = {
+static const map_entry_encoding euc_tw_2014_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -62388,5 +62388,12 @@ const map_entry_encoding Euc_tw_2014ToUtf::euc_tw_2014_to_utf8[] = {
     {2, "\xFD\xCA", 3, "\xE9\xB8\x9E"},
     {2, "\xFD\xCB", 3, "\xE7\xB1\xB2"},
 };
+void Euc_tw_2014ToUtf::Register(const DBConfig &config) {
+	const Euc_tw_2014ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                euc_tw_2014_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

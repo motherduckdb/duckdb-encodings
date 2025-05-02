@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-ISO_5427_EXT-2.1.2.ucm
-const map_entry_encoding Iso_5427_extToUtf::ISO_5427_EXT_to_utf8[] = {
+static const map_entry_encoding ISO_5427_EXT_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -25,5 +25,12 @@ const map_entry_encoding Iso_5427_extToUtf::ISO_5427_EXT_to_utf8[] = {
     {1, "\x6D", 2, "\xD0\x8E"}, {1, "\x6E", 2, "\xD0\x8F"}, {1, "\x6F", 2, "\xD0\xAA"}, {1, "\x70", 2, "\xD1\xA2"},
     {1, "\x71", 2, "\xD1\xB2"}, {1, "\x72", 2, "\xD1\xB4"}, {1, "\x73", 2, "\xD1\xAA"}, {1, "\x7F", 1, "\x7F"},
 };
+void Iso_5427_extToUtf::Register(const DBConfig &config) {
+	const Iso_5427_extToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                ISO_5427_EXT_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

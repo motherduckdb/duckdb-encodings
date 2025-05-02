@@ -27,14 +27,8 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "ibm-1377_P100_P100-2006_U3";
 	const idx_t size = 19480;
-	static const map_entry_encoding ibm_1377_P100_P100_2006_U3_to_utf8[];
-	static void Register(const DBConfig &config) {
-		const Ibm_1377_p100_p100_2006_u3ToUtf generated_function;
-		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                ibm_1377_P100_P100_2006_U3_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(function);
-	}
+
+	static void Register(const DBConfig &config);
 };
 } // namespace duckdb_encodings
 } // namespace duckdb

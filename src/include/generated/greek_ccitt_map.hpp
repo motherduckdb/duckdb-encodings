@@ -27,14 +27,8 @@ public:
 	const idx_t max_bytes_per_byte = 2;
 	const string name = "GREEK_CCITT";
 	const idx_t size = 124;
-	static const map_entry_encoding GREEK_CCITT_to_utf8[];
-	static void Register(const DBConfig &config) {
-		const Greek_ccittToUtf generated_function;
-		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                GREEK_CCITT_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(function);
-	}
+
+	static void Register(const DBConfig &config);
 };
 } // namespace duckdb_encodings
 } // namespace duckdb

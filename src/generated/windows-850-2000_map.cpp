@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: windows-850-2000.ucm
-const map_entry_encoding Windows_850_2000ToUtf::windows_850_2000_to_utf8[] = {
+static const map_entry_encoding windows_850_2000_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 3, "\xE2\x98\xBA"}, {1, "\x02", 3, "\xE2\x98\xBB"},
     {1, "\x03", 3, "\xE2\x99\xA5"}, {1, "\x04", 3, "\xE2\x99\xA6"}, {1, "\x05", 3, "\xE2\x99\xA3"},
     {1, "\x06", 3, "\xE2\x99\xA0"}, {1, "\x07", 3, "\xE2\x88\x99"}, {1, "\x08", 3, "\xE2\x97\x98"},
@@ -92,5 +92,12 @@ const map_entry_encoding Windows_850_2000ToUtf::windows_850_2000_to_utf8[] = {
     {1, "\xFC", 3, "\xE2\x82\x83"}, {1, "\xFD", 3, "\xE2\x82\x82"}, {1, "\xFE", 3, "\xE2\x96\xA0"},
     {1, "\xFF", 2, "\xC2\xA0"},
 };
+void Windows_850_2000ToUtf::Register(const DBConfig &config) {
+	const Windows_850_2000ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                windows_850_2000_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

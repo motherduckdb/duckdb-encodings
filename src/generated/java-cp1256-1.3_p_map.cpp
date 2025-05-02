@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: java-Cp1256-1.3_P.ucm
-const map_entry_encoding Java_cp1256_1_3_pToUtf::java_Cp1256_1_3_P_to_utf8[] = {
+static const map_entry_encoding java_Cp1256_1_3_P_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -89,5 +89,12 @@ const map_entry_encoding Java_cp1256_1_3_pToUtf::java_Cp1256_1_3_P_to_utf8[] = {
     {1, "\xFA", 2, "\xD9\x92"},     {1, "\xFB", 2, "\xC3\xBB"},     {1, "\xFC", 2, "\xC3\xBC"},
     {1, "\xFD", 3, "\xE2\x80\x8E"}, {1, "\xFE", 3, "\xE2\x80\x8F"},
 };
+void Java_cp1256_1_3_pToUtf::Register(const DBConfig &config) {
+	const Java_cp1256_1_3_pToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                java_Cp1256_1_3_P_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

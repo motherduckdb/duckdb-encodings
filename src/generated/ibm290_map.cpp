@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-IBM290-2.1.2.ucm
-const map_entry_encoding Ibm290ToUtf::IBM290_to_utf8[] = {
+static const map_entry_encoding IBM290_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 2, "\xC2\x9C"},     {1, "\x05", 1, "\x09"},
     {1, "\x06", 2, "\xC2\x86"},     {1, "\x07", 1, "\x7F"},         {1, "\x08", 2, "\xC2\x97"},
@@ -71,5 +71,12 @@ const map_entry_encoding Ibm290ToUtf::IBM290_to_utf8[] = {
     {1, "\xF5", 1, "\x35"},         {1, "\xF6", 1, "\x36"},         {1, "\xF7", 1, "\x37"},
     {1, "\xF8", 1, "\x38"},         {1, "\xF9", 1, "\x39"},         {1, "\xFF", 2, "\xC2\x9F"},
 };
+void Ibm290ToUtf::Register(const DBConfig &config) {
+	const Ibm290ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                IBM290_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

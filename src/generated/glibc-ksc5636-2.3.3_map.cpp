@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-KSC5636-2.3.3.ucm
-const map_entry_encoding Glibc_ksc5636_2_3_3ToUtf::glibc_KSC5636_2_3_3_to_utf8[] = {
+static const map_entry_encoding glibc_KSC5636_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"}, {1, "\x02", 1, "\x02"}, {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"}, {1, "\x06", 1, "\x06"}, {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},         {1, "\x09", 1, "\x09"}, {1, "\x0A", 1, "\x0A"}, {1, "\x0B", 1, "\x0B"},
@@ -38,5 +38,12 @@ const map_entry_encoding Glibc_ksc5636_2_3_3ToUtf::glibc_KSC5636_2_3_3_to_utf8[]
     {1, "\x78", 1, "\x78"},         {1, "\x79", 1, "\x79"}, {1, "\x7A", 1, "\x7A"}, {1, "\x7B", 1, "\x7B"},
     {1, "\x7C", 1, "\x7C"},         {1, "\x7D", 1, "\x7D"}, {1, "\x7E", 1, "\x7E"}, {1, "\x7F", 1, "\x7F"},
 };
+void Glibc_ksc5636_2_3_3ToUtf::Register(const DBConfig &config) {
+	const Glibc_ksc5636_2_3_3ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                glibc_KSC5636_2_3_3_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

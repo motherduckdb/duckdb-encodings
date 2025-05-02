@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: java-EUC_KR-1.3_P.ucm
-const map_entry_encoding Java_euc_kr_1_3_pToUtf::java_EUC_KR_1_3_P_to_utf8[] = {
+static const map_entry_encoding java_EUC_KR_1_3_P_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -8358,5 +8358,12 @@ const map_entry_encoding Java_euc_kr_1_3_pToUtf::java_EUC_KR_1_3_P_to_utf8[] = {
     {2, "\xFD\xFD", 3, "\xE7\xBE\xB2"},
     {2, "\xFD\xFE", 3, "\xE8\xA9\xB0"},
 };
+void Java_euc_kr_1_3_pToUtf::Register(const DBConfig &config) {
+	const Java_euc_kr_1_3_pToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                java_EUC_KR_1_3_P_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

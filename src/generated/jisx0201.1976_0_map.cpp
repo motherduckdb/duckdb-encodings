@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-JISX0201.1976_0-4.3.6.ucm
-const map_entry_encoding Jisx0201_1976_0ToUtf::JISX0201_1976_0_to_utf8[] = {
+static const map_entry_encoding JISX0201_1976_0_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -70,5 +70,12 @@ const map_entry_encoding Jisx0201_1976_0ToUtf::JISX0201_1976_0_to_utf8[] = {
     {1, "\xDB", 3, "\xEF\xBE\x9B"}, {1, "\xDC", 3, "\xEF\xBE\x9C"}, {1, "\xDD", 3, "\xEF\xBE\x9D"},
     {1, "\xDE", 3, "\xEF\xBE\x9E"}, {1, "\xDF", 3, "\xEF\xBE\x9F"},
 };
+void Jisx0201_1976_0ToUtf::Register(const DBConfig &config) {
+	const Jisx0201_1976_0ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                JISX0201_1976_0_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

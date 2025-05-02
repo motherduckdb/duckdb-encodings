@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-JISX0208.1983_0-4.3.6.ucm
-const map_entry_encoding Jisx0208_1983_0ToUtf::JISX0208_1983_0_to_utf8[] = {
+static const map_entry_encoding JISX0208_1983_0_to_utf8[] = {
     {2, "\x21\x21", 3, "\xE3\x80\x80"}, {2, "\x21\x22", 3, "\xE3\x80\x81"}, {2, "\x21\x23", 3, "\xE3\x80\x82"},
     {2, "\x21\x24", 3, "\xEF\xBC\x8C"}, {2, "\x21\x25", 3, "\xEF\xBC\x8E"}, {2, "\x21\x26", 3, "\xE3\x83\xBB"},
     {2, "\x21\x27", 3, "\xEF\xBC\x9A"}, {2, "\x21\x28", 3, "\xEF\xBC\x9B"}, {2, "\x21\x29", 3, "\xEF\xBC\x9F"},
@@ -2299,5 +2299,12 @@ const map_entry_encoding Jisx0208_1983_0ToUtf::JISX0208_1983_0_to_utf8[] = {
     {2, "\x74\x21", 3, "\xE5\xA0\xAF"}, {2, "\x74\x22", 3, "\xE6\xA7\x87"}, {2, "\x74\x23", 3, "\xE9\x81\x99"},
     {2, "\x74\x24", 3, "\xE7\x91\xA4"},
 };
+void Jisx0208_1983_0ToUtf::Register(const DBConfig &config) {
+	const Jisx0208_1983_0ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                JISX0208_1983_0_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

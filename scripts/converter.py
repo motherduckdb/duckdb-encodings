@@ -88,7 +88,7 @@ def generate_cpp_map(class_name,encoding_name, codepage_to_utf8, filepath):
 	if encoding_map_name[0].isdigit():
 		encoding_map_name = '_'+encoding_map_name
 	lines = [f'// Generated from: {filepath}',
-		f'const map_entry_encoding {class_name}ToUtf::{encoding_map_name}_to_utf8[]  ='+' {'
+		f'static const map_entry_encoding {encoding_map_name}_to_utf8[]  ='+' {'
 	]
 	max_cp_len = 0
 	max_utf8_len = 0
@@ -100,7 +100,7 @@ def generate_cpp_map(class_name,encoding_name, codepage_to_utf8, filepath):
 		max_utf8_len = max(max_utf8_len, len(utf8_bytes))
 
 	lines.append('};')
-	return '\n'.join(lines), max_cp_len, max_utf8_len, len(codepage_to_utf8.items()), f"static const map_entry_encoding {encoding_map_name}_to_utf8[];"
+	return '\n'.join(lines), max_cp_len, max_utf8_len, len(codepage_to_utf8.items())
 
 
 def write_utf8_representations_to_file(codepage_to_utf8, output_path):
@@ -160,15 +160,10 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 				encoding_map_name = encoding[0].replace("-", "_").replace(".", "_")
 				if encoding_map_name[0].isdigit():
 					encoding_map_name = '_'+encoding_map_name
-				class_bottom = f'''
-				  static void Register(const DBConfig &config) {{
-					const {encoding_class_name}ToUtf generated_function;
-					const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-													generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-													{encoding_map_name}_to_utf8, generated_function.size);
-					config.RegisterEncodeFunction(function);
-				}}
-			}};'''
+				class_bottom = '''
+				static void Register(const DBConfig &config);
+				
+			};'''
 				encoding_file_path = os.path.join('third_party','icu_encodings',encoding[3])
 				bytemap = parse_ucm_to_utf8_map(encoding_file_path)
 				registration_file.write(f'       {encoding_class_name}ToUtf::Register(config);\n')
@@ -178,7 +173,7 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 				# Write hpp Map
 				with open(encoding_map_file_path, "w", encoding="utf-8") as out_file:
 					# These are the matched encoding
-					cpp_output, max_lookup, max_output, map_size, hpp_output = generate_cpp_map(encoding_class_name,encoding[0], bytemap, encoding[3])
+					cpp_output, max_lookup, max_output, map_size = generate_cpp_map(encoding_class_name,encoding[0], bytemap, encoding[3])
 					out_file.write(header_encoding_generated)
 					class_top = f'''class {encoding_class_name}ToUtf {{
 			public:
@@ -189,7 +184,6 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 				const idx_t size = {map_size};
 				'''
 					out_file.write(class_top)
-					out_file.write(hpp_output)
 					out_file.write(class_bottom)
 					out_file.write(footer_encoding_generted)
 				
@@ -202,9 +196,16 @@ with open(os.path.join(generated_path, 'registration.hpp'), "w", encoding="utf-8
 	namespace duckdb_encodings {{
 
 	'''
-					class_bottom = '''
-	} // namespace duckdb_encodings
-	} // namespace duckdb
+					class_bottom = f'''
+				void {encoding_class_name}ToUtf::Register(const DBConfig &config) {{
+					const {encoding_class_name}ToUtf generated_function;
+					const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+													generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+													{encoding_map_name}_to_utf8, generated_function.size);
+					config.RegisterEncodeFunction(function);
+				}}
+	}} // namespace duckdb_encodings
+	}} // namespace duckdb
 	'''
 					out_file.write(class_top)
 					out_file.write(cpp_output)

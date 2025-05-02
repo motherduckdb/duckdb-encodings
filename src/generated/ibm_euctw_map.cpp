@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-IBM_eucTW-4.3.6.ucm
-const map_entry_encoding Ibm_euctwToUtf::IBM_eucTW_to_utf8[] = {
+static const map_entry_encoding IBM_eucTW_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -20239,5 +20239,12 @@ const map_entry_encoding Ibm_euctwToUtf::IBM_eucTW_to_utf8[] = {
     {2, "\xFD\xCA", 3, "\xE9\xB8\x9E"},
     {2, "\xFD\xCB", 3, "\xE7\xB1\xB2"},
 };
+void Ibm_euctwToUtf::Register(const DBConfig &config) {
+	const Ibm_euctwToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                IBM_eucTW_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

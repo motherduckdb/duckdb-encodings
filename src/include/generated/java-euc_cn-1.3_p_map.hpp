@@ -27,14 +27,8 @@ public:
 	const idx_t max_bytes_per_byte = 3;
 	const string name = "java-EUC_CN-1.3_P";
 	const idx_t size = 7573;
-	static const map_entry_encoding java_EUC_CN_1_3_P_to_utf8[];
-	static void Register(const DBConfig &config) {
-		const Java_euc_cn_1_3_pToUtf generated_function;
-		const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-		                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                java_EUC_CN_1_3_P_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(function);
-	}
+
+	static void Register(const DBConfig &config);
 };
 } // namespace duckdb_encodings
 } // namespace duckdb

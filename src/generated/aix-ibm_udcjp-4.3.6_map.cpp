@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-IBM_udcJP-4.3.6.ucm
-const map_entry_encoding Aix_ibm_udcjp_4_3_6ToUtf::aix_IBM_udcJP_4_3_6_to_utf8[] = {
+static const map_entry_encoding aix_IBM_udcJP_4_3_6_to_utf8[] = {
     {2, "\x2D\x21", 3, "\xE2\x91\xA0"}, {2, "\x2D\x22", 3, "\xE2\x91\xA1"}, {2, "\x2D\x23", 3, "\xE2\x91\xA2"},
     {2, "\x2D\x24", 3, "\xE2\x91\xA3"}, {2, "\x2D\x25", 3, "\xE2\x91\xA4"}, {2, "\x2D\x26", 3, "\xE2\x91\xA5"},
     {2, "\x2D\x27", 3, "\xE2\x91\xA6"}, {2, "\x2D\x28", 3, "\xE2\x91\xA7"}, {2, "\x2D\x29", 3, "\xE2\x91\xA8"},
@@ -785,5 +785,12 @@ const map_entry_encoding Aix_ibm_udcjp_4_3_6ToUtf::aix_IBM_udcJP_4_3_6_to_utf8[]
     {2, "\x7D\x28", 3, "\xE9\xB5\xB0"}, {2, "\x7D\x29", 3, "\xE9\xB5\xAB"}, {2, "\x7D\x2A", 3, "\xEF\xA8\xAD"},
     {2, "\x7D\x2B", 3, "\xE9\xB8\x99"}, {2, "\x7D\x2C", 3, "\xE9\xBB\x91"},
 };
+void Aix_ibm_udcjp_4_3_6ToUtf::Register(const DBConfig &config) {
+	const Aix_ibm_udcjp_4_3_6ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                aix_IBM_udcJP_4_3_6_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

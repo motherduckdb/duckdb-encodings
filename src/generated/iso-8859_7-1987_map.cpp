@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: iso-8859_7-1987.ucm
-const map_entry_encoding Iso_8859_7_1987ToUtf::iso_8859_7_1987_to_utf8[] = {
+static const map_entry_encoding iso_8859_7_1987_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},     {1, "\x08", 1, "\x08"},
@@ -90,5 +90,12 @@ const map_entry_encoding Iso_8859_7_1987ToUtf::iso_8859_7_1987_to_utf8[] = {
     {1, "\xFB", 2, "\xCF\x8B"},     {1, "\xFC", 2, "\xCF\x8C"}, {1, "\xFD", 2, "\xCF\x8D"},
     {1, "\xFE", 2, "\xCF\x8E"},
 };
+void Iso_8859_7_1987ToUtf::Register(const DBConfig &config) {
+	const Iso_8859_7_1987ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                iso_8859_7_1987_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

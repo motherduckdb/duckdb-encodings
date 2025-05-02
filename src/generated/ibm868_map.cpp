@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-IBM868-2.1.2.ucm
-const map_entry_encoding Ibm868ToUtf::IBM868_to_utf8[] = {
+static const map_entry_encoding IBM868_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -83,5 +83,12 @@ const map_entry_encoding Ibm868ToUtf::IBM868_to_utf8[] = {
     {1, "\xF1", 2, "\xD8\xA1"},     {1, "\xF2", 2, "\xC2\xAD"},     {1, "\xFB", 2, "\xD9\x91"},
     {1, "\xFC", 3, "\xEF\xB9\xBD"}, {1, "\xFE", 3, "\xE2\x96\xA0"}, {1, "\xFF", 2, "\xC2\xA0"},
 };
+void Ibm868ToUtf::Register(const DBConfig &config) {
+	const Ibm868ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                IBM868_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

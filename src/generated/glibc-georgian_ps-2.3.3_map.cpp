@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-GEORGIAN_PS-2.3.3.ucm
-const map_entry_encoding Glibc_georgian_ps_2_3_3ToUtf::glibc_GEORGIAN_PS_2_3_3_to_utf8[] = {
+static const map_entry_encoding glibc_GEORGIAN_PS_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -92,5 +92,12 @@ const map_entry_encoding Glibc_georgian_ps_2_3_3ToUtf::glibc_GEORGIAN_PS_2_3_3_t
     {1, "\xFC", 2, "\xC3\xBC"},     {1, "\xFD", 2, "\xC3\xBD"},     {1, "\xFE", 2, "\xC3\xBE"},
     {1, "\xFF", 2, "\xC3\xBF"},
 };
+void Glibc_georgian_ps_2_3_3ToUtf::Register(const DBConfig &config) {
+	const Glibc_georgian_ps_2_3_3ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                glibc_GEORGIAN_PS_2_3_3_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-SJIS-2.1.2.ucm
-const map_entry_encoding Shift_jisToUtf::shift_jis_to_utf8[] = {
+static const map_entry_encoding shift_jis_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -7075,5 +7075,12 @@ const map_entry_encoding Shift_jisToUtf::shift_jis_to_utf8[] = {
     {2, "\xEA\xA3", 3, "\xE5\x87\x9C"},
     {2, "\xEA\xA4", 3, "\xE7\x86\x99"},
 };
+void Shift_jisToUtf::Register(const DBConfig &config) {
+	const Shift_jisToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                shift_jis_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-zh_CN.gbk-2.7.ucm
-const map_entry_encoding Zh_cn_gbkToUtf::zh_CN_gbk_to_utf8[] = {
+static const map_entry_encoding zh_CN_gbk_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -24073,5 +24073,12 @@ const map_entry_encoding Zh_cn_gbkToUtf::zh_CN_gbk_to_utf8[] = {
     {2, "\xFE\xFD", 3, "\xEE\x93\x84"},
     {2, "\xFE\xFE", 3, "\xEE\x93\x85"},
 };
+void Zh_cn_gbkToUtf::Register(const DBConfig &config) {
+	const Zh_cn_gbkToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                zh_CN_gbk_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-NF_Z_62_010_1973-2.3.3.ucm
-const map_entry_encoding Glibc_nf_z_62_010_1973_2_3_3ToUtf::glibc_NF_Z_62_010_1973_2_3_3_to_utf8[] = {
+static const map_entry_encoding glibc_NF_Z_62_010_1973_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -38,5 +38,12 @@ const map_entry_encoding Glibc_nf_z_62_010_1973_2_3_3ToUtf::glibc_NF_Z_62_010_19
     {1, "\x78", 1, "\x78"},     {1, "\x79", 1, "\x79"},     {1, "\x7A", 1, "\x7A"},     {1, "\x7B", 2, "\xC3\xA9"},
     {1, "\x7C", 2, "\xC3\xB9"}, {1, "\x7D", 2, "\xC3\xA8"}, {1, "\x7E", 2, "\xC2\xA8"}, {1, "\x7F", 1, "\x7F"},
 };
+void Glibc_nf_z_62_010_1973_2_3_3ToUtf::Register(const DBConfig &config) {
+	const Glibc_nf_z_62_010_1973_2_3_3ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                glibc_NF_Z_62_010_1973_2_3_3_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

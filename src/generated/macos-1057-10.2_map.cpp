@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: macos-1057-10.2.ucm
-const map_entry_encoding Macos_1057_10_2ToUtf::macos_1057_10_2_to_utf8[] = {
+static const map_entry_encoding macos_1057_10_2_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -22100,5 +22100,12 @@ const map_entry_encoding Macos_1057_10_2ToUtf::macos_1057_10_2_to_utf8[] = {
     {2, "\xFE\x4E", 3, "\xEF\xA8\xA8"},
     {2, "\xFE\x4F", 3, "\xEF\xA8\xA9"},
 };
+void Macos_1057_10_2ToUtf::Register(const DBConfig &config) {
+	const Macos_1057_10_2ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                macos_1057_10_2_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

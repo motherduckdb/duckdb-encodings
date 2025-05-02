@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: java-ISO8859_5-1.3_P.ucm
-const map_entry_encoding Java_iso8859_5_1_3_pToUtf::java_ISO8859_5_1_3_P_to_utf8[] = {
+static const map_entry_encoding java_ISO8859_5_1_3_P_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},         {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -70,5 +70,12 @@ const map_entry_encoding Java_iso8859_5_1_3_pToUtf::java_ISO8859_5_1_3_P_to_utf8
     {1, "\xF8", 2, "\xD1\x98"},     {1, "\xF9", 2, "\xD1\x99"}, {1, "\xFA", 2, "\xD1\x9A"}, {1, "\xFB", 2, "\xD1\x9B"},
     {1, "\xFC", 2, "\xD1\x9C"},     {1, "\xFD", 2, "\xC2\xA7"}, {1, "\xFE", 2, "\xD1\x9E"}, {1, "\xFF", 2, "\xD1\x9F"},
 };
+void Java_iso8859_5_1_3_pToUtf::Register(const DBConfig &config) {
+	const Java_iso8859_5_1_3_pToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                java_ISO8859_5_1_3_P_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: windows-1258_db-2013.ucm
-const map_entry_encoding Windows_1258_db_2013ToUtf::windows_1258_db_2013_to_utf8[] = {
+static const map_entry_encoding windows_1258_db_2013_to_utf8[] = {
     {2, "\x41\xD2", 3, "\xE1\xBA\xA2"}, {2, "\x41\xDE", 2, "\xC3\x83"},     {2, "\x41\xF2", 3, "\xE1\xBA\xA0"},
     {2, "\x45\xD2", 3, "\xE1\xBA\xBA"}, {2, "\x45\xDE", 3, "\xE1\xBA\xBC"}, {2, "\x45\xF2", 3, "\xE1\xBA\xB8"},
     {2, "\x49\xCC", 2, "\xC3\x8C"},     {2, "\x49\xD2", 3, "\xE1\xBB\x88"}, {2, "\x49\xDE", 2, "\xC4\xA8"},
@@ -40,5 +40,12 @@ const map_entry_encoding Windows_1258_db_2013ToUtf::windows_1258_db_2013_to_utf8
     {2, "\xF5\xF2", 3, "\xE1\xBB\xA3"}, {2, "\xFD\xCC", 3, "\xE1\xBB\xAB"}, {2, "\xFD\xD2", 3, "\xE1\xBB\xAD"},
     {2, "\xFD\xDE", 3, "\xE1\xBB\xAF"}, {2, "\xFD\xEC", 3, "\xE1\xBB\xA9"}, {2, "\xFD\xF2", 3, "\xE1\xBB\xB1"},
 };
+void Windows_1258_db_2013ToUtf::Register(const DBConfig &config) {
+	const Windows_1258_db_2013ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                windows_1258_db_2013_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

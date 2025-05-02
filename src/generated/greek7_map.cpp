@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-GREEK7-2.1.2.ucm
-const map_entry_encoding Greek7ToUtf::GREEK7_to_utf8[] = {
+static const map_entry_encoding GREEK7_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -38,5 +38,12 @@ const map_entry_encoding Greek7ToUtf::GREEK7_to_utf8[] = {
     {1, "\x7B", 1, "\x7B"},     {1, "\x7C", 1, "\x7C"},     {1, "\x7D", 1, "\x7D"},     {1, "\x7E", 3, "\xE2\x80\xBE"},
     {1, "\x7F", 1, "\x7F"},
 };
+void Greek7ToUtf::Register(const DBConfig &config) {
+	const Greek7ToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                GREEK7_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb

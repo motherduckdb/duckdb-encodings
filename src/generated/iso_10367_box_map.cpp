@@ -4,7 +4,7 @@ namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-ISO_10367_BOX-2.1.2.ucm
-const map_entry_encoding Iso_10367_boxToUtf::ISO_10367_BOX_to_utf8[] = {
+static const map_entry_encoding ISO_10367_BOX_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -69,5 +69,12 @@ const map_entry_encoding Iso_10367_boxToUtf::ISO_10367_BOX_to_utf8[] = {
     {1, "\xD8", 3, "\xE2\x94\xAC"}, {1, "\xD9", 3, "\xE2\x94\xB4"}, {1, "\xDA", 3, "\xE2\x94\xBC"},
     {1, "\xDB", 3, "\xE2\x96\x91"}, {1, "\xDC", 3, "\xE2\x96\x92"}, {1, "\xDD", 3, "\xE2\x96\x93"},
 };
+void Iso_10367_boxToUtf::Register(const DBConfig &config) {
+	const Iso_10367_boxToUtf generated_function;
+	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
+	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
+	                                ISO_10367_BOX_to_utf8, generated_function.size);
+	config.RegisterEncodeFunction(function);
+}
 } // namespace duckdb_encodings
 } // namespace duckdb
