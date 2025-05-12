@@ -1062,6 +1062,11 @@ set_property(TARGET ${LOADABLE_EXTENSION_NAME} PROPERTY CXX_STANDARD 17)
 set_property(TARGET ${LOADABLE_EXTENSION_NAME} PROPERTY CXX_STANDARD_REQUIRED
                                                         ON)
 
+if (MSVC)
+  target_compile_options(${EXTENSION_NAME} PRIVATE /bigobj)
+  target_compile_options(${LOADABLE_EXTENSION_NAME} PRIVATE /bigobj)
+endif()
+
 install(
   TARGETS ${EXTENSION_NAME}
   EXPORT "${DUCKDB_EXPORT_SET}"
