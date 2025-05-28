@@ -21,7 +21,6 @@ jobs:
       extension_name: encodings
 
   duckdb-stable-build:
-    if: false # We skip stable builds, since this depends on code modification that currently only exist on main. (v1.3)
     name: Build extension binaries
     uses: duckdb/extension-ci-tools/.github/workflows/_extension_distribution.yml@v1.3.0
     with:
