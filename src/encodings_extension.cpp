@@ -1,24 +1,23 @@
-#define DUCKDB_EXTENSION_MAIN
-
 #include "encodings_extension.hpp"
 #include "duckdb.hpp"
 #include "duckdb/common/exception.hpp"
 #include "duckdb/common/string_util.hpp"
 #include "duckdb/function/scalar_function.hpp"
-#include "duckdb/main/extension_util.hpp"
+#include "duckdb/main/extension/extension_loader.hpp"
 
 #include "generated_encoded_function.hpp"
 #include "generated/registration.hpp"
 
 namespace duckdb {
 
-static void LoadInternal(DatabaseInstance &instance) {
+static void LoadInternal(ExtensionLoader &loader) {
 	// Register a scalar function
-	duckdb_encodings::RegistrationEncodedFunctions::RegisterFunctions(instance.config);
+	auto &config = loader.GetDatabaseInstance().config;
+	duckdb_encodings::RegistrationEncodedFunctions::RegisterFunctions(config);
 }
 
-void EncodingsExtension::Load(DuckDB &db) {
-	LoadInternal(*db.instance);
+void EncodingsExtension::Load(ExtensionLoader &loader) {
+	LoadInternal(loader);
 }
 std::string EncodingsExtension::Name() {
 	return "encodings";
@@ -36,16 +35,8 @@ std::string EncodingsExtension::Version() const {
 
 extern "C" {
 
-DUCKDB_EXTENSION_API void encodings_init(duckdb::DatabaseInstance &db) {
-	duckdb::DuckDB db_wrapper(db);
-	db_wrapper.LoadExtension<duckdb::EncodingsExtension>();
+DUCKDB_CPP_EXTENSION_ENTRY(encodings, loader) {
+	duckdb::LoadInternal(loader);
 }
 
-DUCKDB_EXTENSION_API const char *encodings_version() {
-	return duckdb::DuckDB::LibraryVersion();
 }
-}
-
-#ifndef DUCKDB_EXTENSION_MAIN
-#error DUCKDB_EXTENSION_MAIN not defined
-#endif
