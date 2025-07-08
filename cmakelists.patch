@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index eecaf5130c..7d4632e392 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -959,7 +959,7 @@ function(build_loadable_extension_directory NAME ABI_TYPE OUTPUT_DIRECTORY EXTEN
+     add_custom_command(
+       TARGET ${TARGET_NAME}
+       POST_BUILD
+-      COMMAND emcc $<TARGET_FILE:${TARGET_NAME}> -o $<TARGET_FILE:${TARGET_NAME}>.wasm -O3 -sSIDE_MODULE=2 -sEXPORTED_FUNCTIONS="${EXPORTED_FUNCTIONS}" ${WASM_THREAD_FLAGS} ${TO_BE_LINKED}
++      COMMAND emcc $<TARGET_FILE:${TARGET_NAME}> -o $<TARGET_FILE:${TARGET_NAME}>.wasm -O1 -sSIDE_MODULE=2 -sEXPORTED_FUNCTIONS="${EXPORTED_FUNCTIONS}" ${WASM_THREAD_FLAGS} ${TO_BE_LINKED}
+       )
+   endif()
+ 
